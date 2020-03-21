@@ -1,0 +1,143 @@
+$black: #000;
+$white: #fff;
+$gray-1: #f7f8fa;
+$gray-2: #f2f3f5;
+$gray-3: #ebedf0;
+$gray-4: #dcdee0;
+$gray-5: #c8c9cc;
+$gray-6: #969799;
+$gray-7: #646566;
+$gray-8: #323233;
+$red: #ee0a24;
+$blue: #409eff;
+$orange: #ff976a;
+$orange-dark: #ed6a0c;
+$orange-light: #fffbe8;
+$green: #5cb87a;
+
+$font-size-xs: 11px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+$font-size-hg: 18px;
+$font-weight-blod: 500;
+
+body,
+div {
+  font-family: 'Microsoft Yahei';
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: $gray-1;
+}
+#app {
+  height: 100%;
+}
+//统一的Page结构样式
+.estate-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+//统一的Page结构样式-标题
+.estate-title {
+  /* background-color: blueviolet; */
+  top: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 999;
+
+  height: 46px; //vant nav-bar组件的高度为46,取值一样
+}
+//统一的Page结构样式-主显示区
+.estate-main {
+  margin-top: 42px;
+
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  height: 100%;
+  display: flex;
+
+  flex-direction: column;
+}
+//统一的Page结构样式-footer
+.estate-footer {
+  height: 45px;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  display: flex;
+  z-index: 999;
+  width: 100%;
+  vertical-align: middle;
+  background-color: $white;
+}
+
+.my-skeleton {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  .my-avatar {
+    // width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: $font-size-hg;
+    color: $green;
+  }
+  .my-skeleton-content {
+    width: 100%;
+    margin-top: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .title {
+      font-size: $font-size-lg;
+      color: $gray-8;
+      display: flex;
+      width: 80%;
+      margin-bottom: 4px;
+      .icon {
+        position: absolute;
+        right: 20px;
+      }
+    }
+
+    .note {
+      font-size: $font-size-sm;
+      color: $gray-7;
+    }
+  }
+}
+
+.my_hidden {
+  visibility: hidden;
+}
+
+// @keyframes backOpacity {
+//   0% {
+//     opacity: 1;
+//   }
+//   25% {
+//     opacity: 0.5;
+//   }
+//   50% {
+//     opacity: 1;
+//   }
+//   75% {
+//     opacity: 0.5;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
+
+// .animation_opactiy {
+//   animation: backOpacity 2s ease-in-out infinite;
+// }
