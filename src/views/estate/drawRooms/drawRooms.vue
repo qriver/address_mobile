@@ -2,10 +2,14 @@
   <div id="draw-rooms" class="building-portal-page">
     <div class="estate-title">
       <div class="my-van">
-        <van-nav-bar title="楼栋结构图" left-text="返回" right-text='保存' @click-right="onClickRight" @click-left="onClickReturn">
-
+        <van-nav-bar
+          title="楼栋结构图"
+          left-text="返回"
+          right-text="保存"
+          @click-right="onClickRight"
+          @click-left="onClickReturn"
+        >
           <van-icon class-prefix="my-icon" name="arrow-left" size="20" slot="left" />
-
         </van-nav-bar>
       </div>
     </div>
@@ -13,22 +17,30 @@
     <div class="estate-main">
       <!-- 项目简要信息 -->
       <van-cell-group>
-        <van-cell title='门牌号码' :value="estatePlateDesc " />
+        <van-cell title="门牌号码" :value="estatePlateDesc" />
 
-        <van-cell title='楼栋号码' :value="objBuilding.buildingPlate.plateDesc" />
+        <van-cell title="楼栋号码" :value="objBuilding.buildingPlate.plateDesc" />
       </van-cell-group>
       <!-- 单元\房间 结构显示-->
       <div id="display-area">
         <van-tabs v-model="active">
-          <van-tab v-for="(unit, id) in objBuilding.units" :key="id" :title="unit.unitAlias">
+          <van-tab v-for="(unit, id) in objBuilding.units" :key="id" :title="unit.unit_alias">
             <van-row v-for="(floor, id) in unit.floors" :key="id">
               <van-col span="4">
-                <div class="span">{{ floor.floorAlias }}</div>
+                <div class="span">{{ floor.floor_alias }}</div>
               </van-col>
               <van-col span="20">
                 <!-- <van-row type="flex" justify="center"> -->
                 <div class="room">
-                  <van-tag v-for="(room, id) in floor.rooms" :key="id" type="sucess" round size="medium" plain>门牌:{{ room.roomAlias }}</van-tag>
+                  <van-tag
+                    v-for="(room, id) in floor.rooms"
+                    :key="id"
+                    type="sucess"
+                    round
+                    size="medium"
+                    plain
+                    >门牌:{{ room.room_alias }}</van-tag
+                  >
                 </div>
                 <!-- </van-row> -->
               </van-col>
@@ -44,7 +56,22 @@
 
 <script>
 //import estateSummary from '@/components/estate/estate-summary.vue';
-import { NavBar, Icon, CollapseItem, Collapse, Tag, Field, Button, Cell, CellGroup, Row, Col, Tabs, Tab, ActionSheet } from 'vant';
+import {
+  NavBar,
+  Icon,
+  CollapseItem,
+  Collapse,
+  Tag,
+  Field,
+  Button,
+  Cell,
+  CellGroup,
+  Row,
+  Col,
+  Tabs,
+  Tab,
+  ActionSheet
+} from 'vant';
 import 'vant/lib/nav-bar/style';
 import 'vant/lib/tabs/style';
 import 'vant/lib/collapse/style';
