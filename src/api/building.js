@@ -18,7 +18,18 @@ const building = {
     // return axios.get(`${base.url1}/building/get_units`, params);
   },
   getBuildingById(params) {
-    return axios.get(`${base.url1}/building/get`, params);
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${base.url1}/building/get`, params)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+
+    // return axios.get(`${base.url1}/building/get`, params);
   },
   createBuilding(params) {
     return axios.post(`${base.url1}/building/create`, params);

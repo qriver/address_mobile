@@ -183,41 +183,25 @@ export default {
   },
   created() {
     //接收传递进的ID
-    buildingPortal.loadData(this);
-
-    // const params = Object.assign({}, params, {
-    //   params: { buildingId: this.$route.params.buildingId }
-    // });
-    // /*
-    //          说明：  页面传参id是否没有值（没有值是从其它页面回退回来，
-    //          有值是从列表选中点击进入的，需要重新通过api获取实例对象）,
-    //          无值是从其它页面回退的，需要从sessionStorage中获取缓存对象
-    //     */
-
-    // if (this.$route.params.buildingId !== undefined) {
-    //   this.$api.building.getBuildingById(params).then(
-    //     res => {
-    //       if (res.data.statusCode == '-1') {
-    //         $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
-    //         return;
-    //       }
-    //       this.objBuilding = commonFunction.objectLineToHump(res.data.result);
-    //       this.objBuilding.buildingPlate = commonFunction.objectLineToHump(
-    //         this.objBuilding.buildingPlate
-    //       );
-
-    //       this.fetchUnits(params);
-    //     },
-    //     err => {
-    //       this.loading = false;
-    //       window.console.log(err.data.res);
-    //     }
-    //   );
-    // } else {
-    //   // this.objBuilding = JSON.parse(JSON.stringify(this.$store.state.building));
+    // try {
+    //   this.objBuilding = buildingPortal.loadData(this.$route.params.buildingId);
     //   this.loading = false;
-    //   this.objBuilding = JSON.parse(sessionStorage.getItem('building'));
+    // } catch (error) {
+    //   this.loading = false;
+    //   $toast.alert('获取数据失败！\n' + JSON.stringify(error), 5000);
     // }
+
+    buildingPortal.loadData(this.$route.params.buildingId).then(
+      res => {
+        this.loading = false;
+        this.objBuilding = res;
+      },
+      err => {
+        this.loading = false;
+
+        $toast.alert('获取数据失败！\n' + JSON.stringify(err), 5000);
+      }
+    );
   },
   computed: {
     ...mapGetters([
@@ -231,57 +215,20 @@ export default {
     }
   },
   methods: {
-    fetchUnits: async function(params) {
-      try {
-        var res = await this.$api.building.getBuildingUnits(params);
-        if (res.data.statusCode == '-1') {
-          $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
-        } else {
-          this.objBuilding.units = res.data.result;
-          //默认获得第一个单元的数据
-          this.fetchFloorsAndRooms(this.objBuilding.units[0]);
-        }
-      } catch (error) {
-        this.loading = false;
-        window.console.log(error);
-      }
-    },
-    fetchFloorsAndRooms: async function(unit) {
-      try {
-        var res = await this.$api.building.getUnitChildrens(unit.unit_id);
-        if (res.data.statusCode == '-1') {
-          $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
-        } else {
-          unit.floors = res.data.result.floors;
-          var rooms = res.data.result.rooms;
-
-          this.putRoomInFloor(unit.floors, rooms);
-          sessionStorage.setItem('building', JSON.stringify(this.objBuilding));
-          this.$store.commit('building/setBuilding', this.objBuilding);
-          this.loading = false;
-        }
-
-        this.loading = false;
-      } catch (error) {
-        this.loading = false;
-        window.console.log(error);
-      }
-    },
-    putRoomInFloor: function(floors, rooms) {
-      for (var i = 0; i < floors.length; i++) {
-        var tmp = [];
-        floors[i].rooms = tmp;
-        for (var j = 0; j < rooms.length; j++) {
-          if (rooms[j].floor_id == floors[i].floor_id) {
-            floors[i].rooms.push(rooms[j]);
-          }
-        }
-      }
-    },
     onTabClick: function(name) {
       this.loading = true;
       var unit = this.objBuilding.units[name];
-      this.fetchFloorsAndRooms(unit);
+      buildingPortal.fetchFloorsAndRooms(unit, this.objBuilding).then(
+        res => {
+          //FIXME：console.log
+          window.console.log(res);
+          this.loading = false;
+        },
+        err => {
+          this.loading = false;
+          $toast.alert('获取数据失败！\n' + JSON.stringify(err), 5000);
+        }
+      );
     },
 
     editRoomClick: function(action, unit, floor, room) {

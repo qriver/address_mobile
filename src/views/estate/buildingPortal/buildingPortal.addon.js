@@ -1,74 +1,100 @@
 import { commonFunction } from '@/api/base.js';
-import { $toast } from '@/assets/common/common.js';
+
 import api from '@/api';
+//FIXME: 数据类型定义被修改，后面代码需要重写
 const buildingPortal = {
-  loadData: function(that) {
-    const params = Object.assign({}, params, {
-      params: { buildingId: that.$route.params.buildingId }
-    });
+  loadData: async function(buildingId) {
+    var objBuilding = '';
 
-    if (that.$route.params.buildingId !== undefined) {
-      api.building.getBuildingById(params).then(
-        res => {
-          if (res.data.statusCode == '-1') {
-            that.loading = false;
-            $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
-            return;
-          }
-          that.objBuilding = commonFunction.objectLineToHump(res.data.result);
-          that.objBuilding.buildingPlate = commonFunction.objectLineToHump(
-            that.objBuilding.buildingPlate
-          );
+    if (buildingId !== undefined) {
+      try {
+        const params = Object.assign({}, params, {
+          params: { buildingId }
+        });
+        buildingId = params;
+        var res = await api.building.getBuildingById(buildingId);
 
-          this.fetchUnits(params, that);
-        },
-        err => {
-          that.loading = false;
-          window.console.log(err.data.res);
+        if (res.data.statusCode == '-1') {
+          return Error(res.data.result);
         }
-      );
+
+        objBuilding = commonFunction.objectLineToHump(res.data.result);
+        objBuilding.buildingPlate = commonFunction.objectLineToHump(objBuilding.buildingPlate);
+
+        //获取单元数据
+        res = await api.building.getBuildingUnits(buildingId);
+
+        if (res.data.statusCode == '-1') {
+          return Error(res.data.result);
+        }
+        objBuilding.units = res.data.result;
+        //默认获得第一个单元的数据
+        var unit = objBuilding.units[0];
+        res = await api.building.getUnitChildrens(unit.unit_id);
+        if (res.data.statusCode == '-1') {
+          return Error(res.data.result);
+        }
+
+        unit.floors = res.data.result.floors;
+        var rooms = res.data.result.rooms;
+        putRoomInFloor(unit.floors, rooms);
+
+        sessionStorage.setItem('building', JSON.stringify(objBuilding));
+        return objBuilding;
+      } catch (error) {
+        return error;
+      }
     } else {
-      // this.objBuilding = JSON.parse(JSON.stringify(this.$store.state.building));
-      that.loading = false;
-      that.objBuilding = JSON.parse(sessionStorage.getItem('building'));
+      return (objBuilding = JSON.parse(sessionStorage.getItem('building')));
     }
   },
 
-  fetchFloorsAndRooms: async function(unit, that) {
+  fetchFloorsAndRooms: async function(unit, objBuilding) {
     try {
-      var res = await that.$api.building.getUnitChildrens(unit.unit_id);
+      var res = await api.building.getUnitChildrens(unit.unit_id);
       if (res.data.statusCode == '-1') {
-        $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
+        // $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
       } else {
         unit.floors = res.data.result.floors;
         var rooms = res.data.result.rooms;
 
         putRoomInFloor(unit.floors, rooms);
-        sessionStorage.setItem('building', JSON.stringify(that.objBuilding));
-        that.$store.commit('building/setBuilding', that.objBuilding);
-        that.loading = false;
+        sessionStorage.setItem('building', JSON.stringify(objBuilding));
+        return true;
       }
-
-      that.loading = false;
     } catch (error) {
-      that.loading = false;
-      window.console.log(error);
+      return error;
     }
   },
-  fetchUnits: async function(params, that) {
-    try {
-      var res = await that.$api.building.getBuildingUnits(params);
-      if (res.data.statusCode == '-1') {
-        $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
-      } else {
-        that.objBuilding.units = res.data.result;
+  fetchUnits: async function(unit, objBuilding) {
+    //   try {
+    //     var res = await that.$api.building.getBuildingUnits(params);
+    //     if (res.data.statusCode == '-1') {
+    //       // $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
+    //     } else {
+    //       that.objBuilding.units = res.data.result;
 
-        //默认获得第一个单元的数据
-        this.fetchFloorsAndRooms(that.objBuilding.units[0], that);
+    //       //默认获得第一个单元的数据
+    //       this.fetchFloorsAndRooms(that.objBuilding.units[0], that);
+    //     }
+    //   } catch (error) {
+    //     that.loading = false;
+    //     window.console.log(error);
+    //   }
+    // }
+    try {
+      var res = await api.building.getUnitChildrens(unit.unit_id);
+      if (res.data.statusCode == '-1') {
+        return Error(res.data.result);
       }
+
+      unit.floors = res.data.result.floors;
+      var rooms = res.data.result.rooms;
+      putRoomInFloor(unit.floors, rooms);
+
+      sessionStorage.setItem('building', JSON.stringify(objBuilding));
     } catch (error) {
-      that.loading = false;
-      window.console.log(error);
+      return error;
     }
   }
 };
