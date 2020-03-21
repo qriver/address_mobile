@@ -55,7 +55,7 @@
               />
             </div>
             <!-- 定义一个不显示标签，记录每一个元素对应的索引值 -->
-            <div v-show="false">{{ (unit.displayIndex = unit_id) }}</div>
+            <div v-show="false">{{ (unit.display_index = unit_id) }}</div>
             <div v-if="unit.floors">
               <van-row
                 type="flex"
@@ -68,7 +68,7 @@
                 <van-col span="6">
                   <div class="span">
                     <!-- 定义一个不显示标签，记录每一个元素对应的索引值 -->
-                    <div v-show="false">{{ (floor.displayIndex = floor_id) }}</div>
+                    <div v-show="false">{{ (floor.display_index = floor_id) }}</div>
                     <van-tag type="primary" size="large" plain>
                       <div slot="default">
                         {{ floor.floor_alias }}
@@ -89,7 +89,7 @@
                   <div class="room">
                     <div v-for="(room, room_id) in floor.rooms" :key="room_id">
                       <!-- 定义一个不显示标签，记录每一个元素对应的索引值 -->
-                      <div v-show="false">{{ (room.displayIndex = room_id) }}</div>
+                      <div v-show="false">{{ (room.display_index = room_id) }}</div>
                       <van-tag
                         type="sucess"
                         round
@@ -166,7 +166,7 @@ import { mapGetters } from 'vuex';
 
 // import { commonFunction } from '@/api/base.js';
 import { $toast } from '@/assets/common/common.js';
-import buildingPortal from '@/views/estate/buildingPortal/buildingPortal';
+import buildingPortal from '@/views/estate/buildingPortal/buildingPortal.addon';
 // import esPortalMainBuildings from '@/components/estate/estatePortal/esPortalMainBuildings.vue';
 
 export default {
@@ -178,14 +178,7 @@ export default {
       buildingId: '',
       objBuilding: {},
       allowModify: false,
-      menuShow: false,
-      actions: [
-        //菜单操作item
-        { name: '操作' },
-        { name: '单元维护' },
-        { name: '楼层维护' },
-        { name: '房间维护' }
-      ]
+      menuShow: false
     };
   },
   created() {
@@ -196,10 +189,10 @@ export default {
     //   params: { buildingId: this.$route.params.buildingId }
     // });
     // /*
-    //      说明：  页面传参id是否没有值（没有值是从其它页面回退回来，
-    //      有值是从列表选中点击进入的，需要重新通过api获取实例对象）,
-    //      无值是从其它页面回退的，需要从sessionStorage中获取缓存对象
-    // */
+    //          说明：  页面传参id是否没有值（没有值是从其它页面回退回来，
+    //          有值是从列表选中点击进入的，需要重新通过api获取实例对象）,
+    //          无值是从其它页面回退的，需要从sessionStorage中获取缓存对象
+    //     */
 
     // if (this.$route.params.buildingId !== undefined) {
     //   this.$api.building.getBuildingById(params).then(
@@ -298,8 +291,8 @@ export default {
           name: 'room_edit',
           params: {
             action: 'addnew',
-            unitIdx: unit.displayIndex,
-            floorIdx: floor.displayIndex
+            unitIdx: unit.display_index,
+            floorIdx: floor.display_index
           }
         });
       } else {
@@ -308,9 +301,9 @@ export default {
           name: 'room_edit',
           params: {
             action: 'edit',
-            unitIdx: unit.displayIndex,
-            floorIdx: floor.displayIndex,
-            roomIdx: room.displayIndex
+            unitIdx: unit.display_index,
+            floorIdx: floor.display_index,
+            roomIdx: room.display_index
           }
         });
       }
@@ -321,7 +314,7 @@ export default {
           name: 'floor_edit',
           params: {
             action: 'addnew',
-            unitIdx: unit.displayIndex
+            unitIdx: unit.display_index
           }
         });
       } else {
@@ -329,8 +322,8 @@ export default {
           name: 'floor_edit',
           params: {
             action: 'edit',
-            unitIdx: unit.displayIndex,
-            floorIdx: floor.displayIndex
+            unitIdx: unit.display_index,
+            floorIdx: floor.display_index
           }
         });
       }
@@ -349,7 +342,7 @@ export default {
           name: 'unit_edit',
           params: {
             action: 'edit',
-            unitIdx: unit.displayIndex
+            unitIdx: unit.display_index
           }
         });
       }
@@ -383,7 +376,6 @@ export default {
     [Tag.name]: Tag,
     [Tabs.name]: Tabs,
     [Tab.name]: Tab,
-
     [CellGroup.name]: CellGroup
     // esInputMainBuildings
   }

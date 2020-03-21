@@ -1,6 +1,5 @@
 import { commonFunction } from '@/api/base.js';
-// eslint-disable-next-line no-unused-vars
-import { $dialog, $toast } from '@/assets/common/common.js';
+import { $toast } from '@/assets/common/common.js';
 import api from '@/api';
 const buildingPortal = {
   loadData: function(that) {
@@ -63,6 +62,7 @@ const buildingPortal = {
         $toast.alert('获取数据失败！\n' + JSON.stringify(res.data.result), 5000);
       } else {
         that.objBuilding.units = res.data.result;
+
         //默认获得第一个单元的数据
         this.fetchFloorsAndRooms(that.objBuilding.units[0], that);
       }

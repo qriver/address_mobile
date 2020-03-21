@@ -8,3 +8,8 @@ git branch -a
  git checkout 分支名
 
  git.exe push --progress "origin" dev:dev
+
+ 4.commit 
+ git cz
+ or 
+ git commit -m ''   -a

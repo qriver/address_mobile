@@ -28,19 +28,16 @@ const dbAction = {
     } catch (error) {
       $toast.close();
       $toast.alert('保存失败\n' + JSON.stringify(res.data.result), 5000);
-      return;
+      return error;
     }
   },
-
+  /* TODO:更新逻辑太复杂，能不能简化 */
   update: async function(oldData, postData) {
     postData.roomId = oldData.objRoom.room_id;
-    // postData.floorId = postData.floor_id;
     postData.roomAlias = postData.roomPlate.plateNumber + '室';
     postData.roomPlate.roomPlateId = oldData.objRoom.room_plate_id;
     delete postData.roomPlate.roomId;
     delete postData.roomPlateId;
-    // postData.roomPlate.floorPlateId = postData.roomPlate.floorPlateId;
-    // postData.roomPlate.plateNumber = postData.roomPlate.plateNumber;
     postData.roomPlate.plateDesc = postData.roomAlias;
     postData.roomPlate.workerId = postData.workerId;
 
