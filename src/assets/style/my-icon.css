@@ -1,0 +1,106 @@
+/* 
+   通过 https://www.iconfont.cn 网站生成字体
+   对css文件按下以格式修改
+*/
+@font-face {
+  font-family: 'my-icon';
+  src: url(data:font/ttf;base64,d09GMgABAAAAAAjEAAsAAAAAEJAAAAh1AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCFNgqQMI0xATYCJANMCygABCAFhGEHgXobHw4jUpFSyP4qgSf7VUbCHhgmG6MQXe3u0DtZBMH4GRwv+wS+MolIUPUzQVVL1nO7n7IjK7LC4RAS7bJEChTlEWbPuOOB53D9JnDmY2MvmpsSyiKYg+MEx90OgCPatNm7i5xgMasJeSFpnYar+t2lIXGs5qQOrUPNogZ1oeIkNaQmEufvXfqn2i18hOmUtX/56bmEjL4E7gHp+v/3c3XvsHdY1Ibaw0MZtU3s7v+JKfoRsUZoGhIhiXgTjVQqJFLIWIy/vqkTygftg/b6xPUQ6F14pESqUNRyWiN0Gw96De2ZmZfwpNXVxLHhQGAOEW1whjnBW/p9fXkKtEiqEL3vazfZ9vL8e9/M9NdUDiyQ9+cEJieBgUfg0IN0/7I9PCaqp/q7H5xYrx70/HulMoVSb7KP+3uZz/lW/tKi8QabyWinnBjRK3zdESazhfGfvM3OVWqNVqc3GEmCoiQ1Amfj7lWQO4IJESeYEQmCBZEkWBEpAkNkCDZEgWBHlCTwED0QVIgJAEtsQNAgtgQtYkfQIfYEPeJOMCAvCUbkM4GQb2YS0o6dr8EzUhGWEvibSu9ed8s+Q1LTmFScoLQf4LE2t80zEl9CM3wIhvGVQuoOYgjfAEZEkBKSCSCpMNLkK64gVvcgiAAfkhw3dIO1xhTErS0PEdbn2q3Bg/ENgVEDarebt/dyuTiLzWyn916tV3iljSVobWWIxyOcdP2/kaIQ5Nzu7i2N1dQ1w+tNPOGdUX0jk+v/teWVuaFbvWircVXYjrd6O26oyNkYdNZVzZBqPQuZNpZT/SaTrTXhsDiPpTIXoTy7gUsw6JTjgEJCp0lSwyuFrDFIHCSeoyyjSjOmR92ZrCeaH0DC/nCPh++kFVS8oeJwOGw8RFGWIwiZjzYbAwwSKKA1yay20oLGVKWV5ikpLmnERMBgFM4gET4DxMggKHWGBJ6uxa5YnhX25T6GDWZIwPpiMR0jfMYwmCiteV/zVTrTeu6YOyzbI/e5PB6vt7PlkOmw9aj5yIzni5I+qQ8wBh82KbWHWnHltsjEIrnhqJXTVodxiVVy3gN41QZzSEilZRK/riC/uvc/2QqLQhNrmnA0ooEWqtRPwMNOuuqXuLuf8TYq9UwSVDptgjFBq1MJhiRRMj3seWAxzgg1nxXQLpwlAfGDBaKbPriA+IpwjMY5aNycF6qp2j+Iw2g8CAUjSuVxwKHEL2jkK2rC+Zzm2mpLS8FmlhvsvJY3CNzuy6ZLlivmq53XVptqrHazrdWkNksi4sItGQbbPdsoQw7ZKGKjwlcki5SJW01OBeuEsOSeWGoW6mNeMl3TE4kDIgPE2+okkovbSPOxgbHMwHGafmh8SrvtxYHUpcECYlHnwfzlKo86DJsyHUtB6onTBCJpUmeoj8t3Ee/+iV0dY8ZeGrVgzPBROeFpCjzH6czBIQ4WPOe4vSItPGf3As+wPdFjYzrUFiux2m/X/0zLnaE7WzIB2Y2NspHicdALZkfHkI47mBcoGz5tf/7MGRISHOKEIJeDdYzt5Vy46FblIt/XuWgRvYV1sG5nSvhCsPtwneTQJQ74+2Lg0ce2HWfjVVX4bCMOEq9Sj9Ji+i1J6OJlt9RpYBtZHE856PhIR1R8lCMyflv6ebYNO8Li0Kaio/ttaiLjaQcVX+zYVm46qrqNVMbWFt8N6tlomrX7Qdz2YlZg4VPD589rQ4L1vWrBdXQKlp+HTcEbqB+W17yv2tR8cETsFCwvH5PrTMnLm6JMQtnZSNRWZxuTMDVmNDKTjNkQ92BsVnCCFa6nJ8bDVNdPXF82gt39gj3f3Ng8/EXDrb2ILnX9+jt79uzAoV5xkYMihnaLOxqt76jv4LaAdlBfLIuSiSF8/onbb4JSA7duhXMbGwZkd2m5es+hnTsUaWUFGq1UH5GWFVzRKDODroYktext7Js3EjnMb190oK7rhwf1X9R/8CFed9Lb8X1xzm1iTe7o+t47liUPqRGoQRmz7200qpX3uaESsYP7iSOWMGHQnGfPakN0pBZMw3f7PnsG3KfIxdKIxWzksjBFuOAowhjnA+SsfLcyps8a4FNO2VhgYdT+5FgwaPSNuq2MU4ZOUrB5rOK5aHcFPqHwheux5u4TBmJgBooG+ZzuyzpY1uXHUHYH4dut0Mw3TUNvRXefOKlB6wYfPzWKbzRxIhfSeeKkTx8nTry5YXEbkzCYH6wbrJ/t+IhIzdVgzt97AGB27IviNjsuP5d8vciSIAN7iUcJ+mIeoRyzL0TFdQUDMYdmXJ0K5Z4V4/Xptm3DaRO2QbHnZlgb7IJgPPbBuxj79ZduO/jDn71Klyg/+9P//Bb9L191VTqL25mjALQ/byDI/q55iGD4rVWuldpyEMsZdnQwVxcOGAD+P51OoDd+oEj/Dnf4lbWlAfzO5BOUcBQy3Ag5bllUAQ0KqCmsLOpBDl1PHiAQxgIOiCABuAczihCIwY4wvB/h+AwisLvIB0LgIfgCfy+iQEB+56ShKT2QunoTBMPgxqcrninalK3acye7fmPqFWSqiLn/KFqi7rQ/XrV8IaG030dv6WwWXRRu7lPc0LBWdpPwFb3ts9l0ORwideDecxtW4oJgoWxwxmf94pli0lYmSN/93DemXkHocc6Y/yg6lWJtzsnesRx9UVRn3Bz66i2dmXFG54YKN+czKydW2cjORMNVdvS2l1skp4uDmi/Wpfa82vaWXwX09Lc4AphMrkq1GrXq1GvQqEmzFq2SKUCBCmI1zUDJ5w40M6AMvAARvu/6NK8MoVCaa/ceVRe3gvda1FYQwk6xvjLNa4VWjvSq0UaB7zRTBPG5Y+hjcQgjLf1hg1fn7dhVC3XWtGtA6wYxKSk3blNLtBkgOBaav9CHTUDPRSjquZMNAwAA)
+    format('woff2');
+}
+
+/*  */
+
+.van-toast .my-icon {
+  font-size: 36px;
+}
+.my-icon {
+  font-family: 'my-icon' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.my-icon-shangchuan:before {
+  content: '\e8b7';
+}
+
+.my-icon-tanhao:before {
+  content: '\e8ba';
+}
+
+.my-icon-arrow-up:before {
+  content: '\e746';
+}
+
+.my-icon-loading:before {
+  content: '\e756';
+}
+
+.my-icon-success:before {
+  content: '\e767';
+}
+
+.my-icon-viewlist:before {
+  content: '\e76d';
+}
+
+.my-icon-add-select:before {
+  content: '\e7b0';
+}
+
+.my-icon-sami-select:before {
+  content: '\e7b1';
+}
+
+.my-icon-arrow-down:before {
+  content: '\e7b2';
+}
+
+.my-icon-search:before {
+  content: '\e7b3';
+}
+
+.my-icon-shuangshen:before {
+  content: '\e7c4';
+}
+
+.my-icon-chuangzuo:before {
+  content: '\e8ad';
+}
+
+.my-icon-bussiness-man:before {
+  content: '\e6ef';
+}
+
+.my-icon-arrow-right:before {
+  content: '\e743';
+}
+
+.my-icon-arrow-left:before {
+  content: '\e744';
+}
+
+.my-icon-ashbin:before {
+  content: '\e745';
+}
+
+.my-icon-company:before {
+  content: '\e748';
+}
+
+.my-icon-discount:before {
+  content: '\e74c';
+}
+
+.van-icon {
+  font-family: 'my-icon' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.van-icon-arrow-down:before {
+  content: '\e743';
+}

@@ -1,0 +1,56 @@
+@import '@/assets/style/common';
+@import '@/assets/style/my-icon'; //icon图标库
+
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.van-icon {
+  color: $blue;
+}
+
+.my-van .van-nav-bar {
+  color: $blue;
+  background-color: $blue;
+  .van-nav-bar__title {
+    background-color: $blue;
+    color: $white;
+  }
+
+  .van-icon {
+    color: $white;
+  }
+
+  .van-nav-bar__right {
+    color: $white;
+  }
+
+  .van-nav-bar__left {
+    color: $white;
+    .my-icon {
+      vertical-align: middle;
+      margin-top: 5px;
+    }
+  }
+  .van-nav-bar__title {
+    background-color: $blue;
+    color: $white;
+  }
+
+  .van-nav-bar__right {
+    color: $white;
+  }
+
+  .van-nav-bar__left {
+    color: $white;
+  }
+  .van-nav-bar__text {
+    color: $white;
+  }
+}
