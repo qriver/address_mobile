@@ -40,6 +40,9 @@ const dbAction = {
     roomPost.room_plate.room_plate_id = oldData.objRoom.room_plate_id;
     roomPost.floor_id = postData.floorId;
     roomPost.room_plate.floor_plate_id = postData.room_plate.floor_plate_id;
+    //FIXME：console.log
+    window.console.log(roomPost);
+
     const params = Object.assign({}, params, {
       room: roomPost
     });

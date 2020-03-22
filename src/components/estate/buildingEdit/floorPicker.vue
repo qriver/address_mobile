@@ -16,14 +16,14 @@
         </van-field>
       </van-col>
       <van-col span="4">
-        <van-button
+        <!-- <van-button
           style="margin-top:5px"
           size="small"
           hairline
           type="info"
           @click="onConfirm('save')"
           >保存
-        </van-button>
+        </van-button> -->
       </van-col>
     </van-row>
 
@@ -80,16 +80,16 @@ export default {
   },
 
   methods: {
-    onConfirm(action) {
+    onConfirm() {
       //pick选择界面弹出后，确认选择的数据对象
 
       this.showPicker = false;
       var unit = this.objUnit;
       var floor = unit.floors[this.$refs.picker.getIndexes()[0]];
-      floor.displayIndex = this.$refs.picker.getIndexes()[0];
+      //floor.displayIndex = this.$refs.picker.getIndexes()[0];
       this.value = floor.floor_alias;
 
-      this.$emit('floor-picker-confirm', floor, action);
+      this.$emit('floor-picker-confirm', floor, this.$refs.picker.getIndexes()[0]);
     },
 
     onCancel() {

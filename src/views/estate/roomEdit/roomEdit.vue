@@ -28,11 +28,27 @@
             input-align="left"
             placeholder="请输入房间门牌号"
           />
-          <floor-picker
-            v-show="!this.isAddnew"
-            :objUnit="this.oldData.objUnit"
-            @floor-picker-confirm="floorPickerConfirm"
-          ></floor-picker>
+          <!-- 修改楼层 -->
+          <van-row>
+            <van-col span="20">
+              <floor-picker
+                v-show="!this.isAddnew"
+                :objUnit="this.oldData.objUnit"
+                @floor-picker-confirm="floorPickerConfirm"
+              ></floor-picker>
+            </van-col>
+            <van-col span="4">
+              <van-button
+                style="margin-top:5px"
+                size="small"
+                hairline
+                type="info"
+                @click="this.editRoomFloor"
+                >保存
+              </van-button>
+            </van-col>
+          </van-row>
+          <!-- 修改门牌 -->
           <van-row>
             <van-col span="20">
               <van-field
@@ -182,23 +198,26 @@ export default {
       this.$router.push('/building/portal');
     },
 
-    floorPickerConfirm(value, action) {
+    floorPickerConfirm(value, index) {
       //value是floorPick组件选中的两个对象的index
       this.postData.floor_id = value.floor_id;
       this.postData.room_plate.floor_plate_id = value.floor_plate_id;
-      //displayIndex中记录的是room变更到的新楼层的索引值
-      this.postData.display_index = value.display_index;
-      if (action == 'save') {
-        if (dbAction.updateFloor(this.oldData, this.postData)) {
-          this.afterChangePlateDesc =
-            this.oldData.objUnit.unit_alias +
-            '/' +
-            this.oldData.objUnit.floors[this.postData.display_index].floor_alias +
-            '/' +
-            this.oldData.objRoom.room_alias;
-        }
+      // this.postData.display_index中记录的是room变更到的新楼层的索引值
+      //display_index在变更过程中没有用到，这里用来临时存放新楼层索引值
+
+      this.postData.display_index = index;
+    },
+    editRoomFloor() {
+      if (dbAction.updateFloor(this.oldData, this.postData)) {
+        this.afterChangePlateDesc =
+          this.oldData.objUnit.unit_alias +
+          '/' +
+          this.oldData.objUnit.floors[this.postData.display_index].floor_alias +
+          '/' +
+          this.oldData.objRoom.room_alias;
       }
     },
+
     editPlateNumber() {
       this.postData.plate_number = this.new_plate_number;
 
