@@ -159,7 +159,7 @@ export default {
     this.oldData.objFloor = this.oldData.objUnit.floors[this.$route.params.floorIdx];
     this.oldData.floorIdx = this.$route.params.floorIdx;
     this.postData = new roomObject();
-    this.postData.workerId = this.$store.state.user.userId;
+    this.postData.worker_id = this.$store.state.user.userId;
     this.postData.floor_id = this.oldData.objFloor.floor_id;
     this.postData.room_plate.floor_plate_id = this.oldData.objFloor.floor_plate_id;
 
@@ -202,16 +202,6 @@ export default {
     editPlateNumber() {
       this.postData.plate_number = this.new_plate_number;
 
-      // if (dbAction.updatePlateNumber(this.oldData, this.postData)) {
-      //   this.afterChangePlateDesc =
-      //     this.oldData.objUnit.unit_alias +
-      //     '/' +
-      //     this.oldData.objFloor.floor_alias +
-      //     '/' +
-      //     this.oldData.objRoom.room_alias;
-      // }
-
-      //FIXME: 异步导致数据没有即时变更
       dbAction.updatePlateNumber(this.oldData, this.postData).then(res => {
         this.afterChangePlateDesc =
           this.oldData.objUnit.unit_alias +
@@ -228,11 +218,8 @@ export default {
     },
 
     onSaveClick: async function() {
-      if (this.isAddnew) {
-        dbAction.addNew(this.oldData, this.postData);
-      } else {
-        dbAction.update(this.oldData, this.postData);
-      }
+      this.postData.room_plate.plate_number = this.new_plate_number;
+      dbAction.addNew(this.oldData, this.postData);
     }
   },
   computed: {

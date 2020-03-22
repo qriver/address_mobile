@@ -108,7 +108,7 @@ function roomObject() {
       plate_number: '',
       plate_suffix_id: '01',
       plate_desc: '',
-      plate_suffixValue: '室',
+      plate_suffix_value: '室',
       status: 0,
       used_flag: 0,
       worker_id: ''
