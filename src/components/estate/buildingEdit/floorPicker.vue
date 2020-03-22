@@ -1,23 +1,54 @@
 /* 房产信息列表 */
 <template>
   <div id="floor-picker">
-    <van-field label="新的楼层" required readonly :value="value" clickable input-align="right" placeholder="请选择楼层" @click="onFieldClick()">
-      <van-icon size="25" class-prefix="my-icon" name="arrow-right" slot="right-icon" />
-    </van-field>
+    <van-row>
+      <van-col span="20">
+        <van-field
+          label="修改楼层"
+          required
+          readonly
+          :value="value"
+          clickable
+          input-align="left"
+          placeholder="请选择楼层"
+          @click="onFieldClick()"
+        >
+        </van-field>
+      </van-col>
+      <van-col span="4">
+        <van-button
+          style="margin-top:5px"
+          size="small"
+          hairline
+          type="info"
+          @click="onConfirm('save')"
+          >保存
+        </van-button>
+      </van-col>
+    </van-row>
+
     <van-popup v-model="showPicker" position="bottom">
-      <van-picker ref="picker" show-toolbar :columns="columns" @cancel="onCancel" @confirm="onConfirm" />
+      <van-picker
+        ref="picker"
+        show-toolbar
+        :columns="columns"
+        @cancel="onCancel"
+        @confirm="onConfirm"
+      />
     </van-popup>
   </div>
 </template>
 
 <script>
-import { Icon, Field, Popup, Picker } from 'vant';
+import { Icon, Field, Popup, Picker, Button, Row, Col } from 'vant';
 // import 'vant/lib/cell-group/style';
 
 import 'vant/lib/popup/style';
 import 'vant/lib/picker/style';
 import 'vant/lib/field/style';
-
+import 'vant/lib/button/style';
+import 'vant/lib/row/style';
+import 'vant/lib/col/style';
 export default {
   name: 'floor-picker',
   data() {
@@ -42,11 +73,14 @@ export default {
     [Popup.name]: Popup,
     [Picker.name]: Picker,
     [Field.name]: Field,
+    [Button.name]: Button,
+    [Row.name]: Row,
+    [Col.name]: Col,
     [Icon.name]: Icon
   },
 
   methods: {
-    onConfirm() {
+    onConfirm(action) {
       //pick选择界面弹出后，确认选择的数据对象
 
       this.showPicker = false;
@@ -55,7 +89,7 @@ export default {
       floor.displayIndex = this.$refs.picker.getIndexes()[0];
       this.value = floor.floor_alias;
 
-      this.$emit('floor-picker-confirm', floor);
+      this.$emit('floor-picker-confirm', floor, action);
     },
 
     onCancel() {

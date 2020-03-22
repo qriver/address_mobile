@@ -220,7 +220,6 @@ export default {
       var unit = this.objBuilding.units[name];
       buildingPortal.fetchFloorsAndRooms(unit, this.objBuilding).then(
         res => {
-          //FIXME：console.log
           window.console.log(res);
           this.loading = false;
         },

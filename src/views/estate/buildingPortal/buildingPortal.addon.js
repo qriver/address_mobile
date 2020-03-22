@@ -1,7 +1,7 @@
 import { commonFunction } from '@/api/base.js';
 
 import api from '@/api';
-//FIXME: 数据类型定义被修改，后面代码需要重写
+
 const buildingPortal = {
   loadData: async function(buildingId) {
     var objBuilding = '';
