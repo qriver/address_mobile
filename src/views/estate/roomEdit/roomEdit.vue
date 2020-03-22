@@ -29,10 +29,9 @@
             placeholder="请输入房间门牌号"
           />
           <!-- 修改楼层 -->
-          <van-row>
+          <van-row v-show="!this.isAddnew">
             <van-col span="20">
               <floor-picker
-                v-show="!this.isAddnew"
                 :objUnit="this.oldData.objUnit"
                 @floor-picker-confirm="floorPickerConfirm"
               ></floor-picker>
