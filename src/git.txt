@@ -13,3 +13,5 @@ git branch -a
  git cz
  or 
  git commit -m ''   -a
+ git commit --amend:wq!
+ git

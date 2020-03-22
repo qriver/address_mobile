@@ -4,23 +4,23 @@ import { $dialog, $toast } from '@/assets/common/common.js';
 import api from '@/api';
 const dbAction = {
   addNew: async function(oldData, postData) {
-    postData.floor_id = oldData.objFloor.floor_id;
-    postData.room_alias = postData.room_plate.plate_number + '室';
+    postData.unit_alias = postData.unit_plate.plate_number + '单元';
+    postData.building_id = oldData.objBuilding.buildingId;
 
-    postData.room_plate.worker_id = postData.worker_id;
-    postData.room_plate.floor_plate_id = oldData.objFloor.floor_plate_id;
-    postData.room_plate.plate_desc = postData.room_alias;
+    postData.unit_plate.worker_id = postData.worker_id;
+    postData.unit_plate.building_plate_id = oldData.objBuilding.buildingPlateId;
+    postData.unit_plate.plate_desc = postData.unit_alias;
 
     const params = Object.assign({}, params, {
-      room: postData
+      unit: postData
     });
     $toast.loading('正在保存...', 0);
-    var res = await api.room.createRoom(params);
+    var res = await api.unit.createUnit(params);
     try {
       $toast.close();
       if (res.data.statusCode !== '-1') {
         $toast.success('保存成功！', 1500);
-        oldData.objFloor.rooms.push(res.data.result);
+        oldData.objBuilding.units.push(res.data.result);
         sessionStorage.setItem('building', JSON.stringify(oldData.objBuilding));
       } else {
         $toast.close();
@@ -34,31 +34,30 @@ const dbAction = {
     }
   },
 
-  updateFloor: async function(oldData, postData) {
-    var roomPost = { room_plate: {} };
-    roomPost.room_id = oldData.objRoom.room_id;
-    roomPost.room_plate.room_plate_id = oldData.objRoom.room_plate_id;
-    roomPost.floor_id = postData.floor_id;
-    roomPost.room_plate.floor_plate_id = postData.room_plate.floor_plate_id;
+  update: async function(oldData, postData) {
+    var unitPost = { unit_plate: {} };
+    unitPost.unit_id = oldData.objUnit.unit_id;
+    unitPost.unit_plate.unit_plate_id = oldData.objUnit.unit_plate_id;
+    unitPost.unit_alias = postData.plate_number + '单元';
+    unitPost.unit_plate.plate_desc = unitPost.unit_alias;
+    unitPost.display_index = postData.display_index;
 
     const params = Object.assign({}, params, {
-      room: roomPost
+      unit: unitPost
     });
 
     $toast.loading('正在保存...', 0);
-    var res = await api.room.updateRoom(params);
+    var res = await api.unit.updateUnit(params);
     try {
       $toast.close();
       if (res.data.statusCode !== '-1') {
         $toast.success('保存成功！', 1500);
-        // oldData.objRoom = { ...oldData.objRoom, ...roomPost };
+        // oldData.objUnit = { ...oldData.objUnit, ...unitPost };
 
-        for (let key in roomPost) {
-          oldData.objRoom[key] = roomPost[key];
+        for (let key in unitPost) {
+          oldData.objUnit[key] = unitPost[key];
         }
-        //调整楼层缓存数据，从旧楼层删除room，在新楼层增加room
-        oldData.objFloor.rooms.splice(oldData.roomIdx, 1);
-        oldData.objUnit.floors[postData.display_index].rooms.push(oldData.objRoom);
+
         //保存到缓存
         sessionStorage.setItem('building', JSON.stringify(oldData.objBuilding));
         return true;
@@ -71,7 +70,7 @@ const dbAction = {
       }
       /*
       to_do: 修改为提交更新后，重查本单元的数据并更新缓存
-      用修改后的room更新缓存中的对象，避免从数据库反复取数据
+      用修改后的unit更新缓存中的对象，避免从数据库反复取数据
       修改后影响的字段更新原对象
     */
       // postData = commonFunction.objectHumpToLine(postData);
@@ -83,27 +82,27 @@ const dbAction = {
     }
   },
   updatePlateNumber: async function(oldData, postData) {
-    var roomPost = { room_plate: {} };
-    roomPost.room_id = oldData.objRoom.room_id;
-    roomPost.room_plate.room_plate_id = oldData.objRoom.room_plate_id;
-    roomPost.room_plate.plate_number = postData.plate_number;
-    roomPost.room_alias = postData.plate_number + '室';
-    roomPost.room_plate.plate_desc = roomPost.room_alias;
+    var unitPost = { unit_plate: {} };
+    unitPost.unit_id = oldData.objUnit.unit_id;
+    unitPost.unit_plate.unit_plate_id = oldData.objUnit.unit_plate_id;
+    unitPost.unit_plate.plate_number = postData.plate_number;
+    unitPost.unit_alias = postData.plate_number + '室';
+    unitPost.unit_plate.plate_desc = unitPost.unit_alias;
 
     const params = Object.assign({}, params, {
-      room: roomPost
+      unit: unitPost
     });
 
     $toast.loading('正在保存...', 0);
-    var res = await api.room.updateRoom(params);
+    var res = await api.unit.updateRoom(params);
     try {
       $toast.close();
       if (res.data.statusCode !== '-1') {
         $toast.success('保存成功！', 1500);
-        delete roomPost.room_plate;
-        // oldData.objRoom = { ...oldData.objRoom, ...roomPost };
-        for (let key in roomPost) {
-          oldData.objRoom[key] = roomPost[key];
+        delete unitPost.unit_plate;
+        // oldData.objUnit = { ...oldData.objUnit, ...unitPost };
+        for (let key in unitPost) {
+          oldData.objUnit[key] = unitPost[key];
         }
         //保存到缓存
 
@@ -117,7 +116,7 @@ const dbAction = {
       }
       /*
       to_do: 修改为提交更新后，重查本单元的数据并更新缓存
-      用修改后的room更新缓存中的对象，避免从数据库反复取数据
+      用修改后的unit更新缓存中的对象，避免从数据库反复取数据
       修改后影响的字段更新原对象
     */
       // postData = commonFunction.objectHumpToLine(postData);
