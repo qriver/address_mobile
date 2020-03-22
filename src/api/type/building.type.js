@@ -53,7 +53,7 @@ function unitObject() {
       building_plate_id: '', //编号
       plate_number: '',
       plate_suffix_id: '01',
-      plate_suffixValue: '单元',
+      plate_suffix_value: '单元',
       status: 0,
       used_flag: 0,
       plate_desc: '',
@@ -84,7 +84,7 @@ function floorObject() {
       used_flag: 0,
       worker_id: '',
       plate_number: '',
-      plate_suffixValue: '楼',
+      plate_suffix_value: '楼',
       plate_suffix_id: '1'
     } //编号
   };
