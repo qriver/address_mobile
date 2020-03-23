@@ -20,6 +20,9 @@ const dbAction = {
       $toast.close();
       if (res.data.statusCode !== '-1') {
         $toast.success('保存成功！', 1500);
+        if (oldData.objBuilding.units == undefined) {
+          oldData.objBuilding.units = [];
+        }
         oldData.objBuilding.units.push(res.data.result);
         sessionStorage.setItem('building', JSON.stringify(oldData.objBuilding));
       } else {

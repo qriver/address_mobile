@@ -3,3 +3,4 @@
 
   2、[npm install 报node-sass错误]
    解决方案：删除node_modules并运行npm install然后npm rebuild node-sass 什么都不做。
+    方案二：   npm install --unsafe-perm=true --allow-root

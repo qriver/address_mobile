@@ -20,6 +20,9 @@ const dbAction = {
       $toast.close();
       if (res.data.statusCode !== '-1') {
         $toast.success('保存成功！', 1500);
+        if (oldData.objFloor.rooms == undefined) {
+          oldData.objFloor.rooms = [];
+        }
         oldData.objFloor.rooms.push(res.data.result);
         sessionStorage.setItem('building', JSON.stringify(oldData.objBuilding));
       } else {
@@ -28,7 +31,6 @@ const dbAction = {
         return;
       }
     } catch (error) {
-      $toast.close();
       $toast.alert('保存失败\n' + JSON.stringify(res.data.result), 5000);
       return error;
     }

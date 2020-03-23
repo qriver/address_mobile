@@ -19,6 +19,9 @@ const dbAction = {
       $toast.close();
       if (res.data.statusCode !== '-1') {
         $toast.success('保存成功！', 1500);
+        if (oldData.objUnit.floors == undefined) {
+          oldData.objUnit.floors = [];
+        }
         oldData.objUnit.floors.push(res.data.result);
         sessionStorage.setItem('building', JSON.stringify(oldData.objBuilding));
       } else {
