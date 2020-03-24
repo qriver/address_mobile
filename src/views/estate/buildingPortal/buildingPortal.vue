@@ -198,7 +198,6 @@ export default {
       },
       err => {
         this.loading = false;
-
         $toast.alert('获取数据失败！\n' + JSON.stringify(err), 5000);
       }
     );
