@@ -4,6 +4,7 @@ import user from './modules/user';
 import estate from './modules/estate';
 import site from './modules/site';
 import building from './modules/building';
+import viewBuildingPortal from './modules/viewBuildingPortal';
 import VuexPersistence from 'vuex-persist';
 
 const vuexLocal = new VuexPersistence({
@@ -16,7 +17,8 @@ export default new Vuex.Store({
     user: user,
     estate: estate,
     site: site,
-    building: building
+    building: building,
+    viewBuildingPortal: viewBuildingPortal
   },
   plugins: [vuexLocal.plugin]
 });

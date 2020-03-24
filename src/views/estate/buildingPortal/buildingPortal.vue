@@ -21,15 +21,15 @@
           <van-icon size="25" class-prefix="my-icon" name="arrow-right" slot="right-icon" />
         </van-cell>
         <van-cell title="维护数据">
-          <van-switch size="20" v-model="allowModify" slot="right-icon" />
+          <van-switch size="20" v-model="isModify" slot="right-icon" />
         </van-cell>
       </van-cell-group>
       <!-- 单元\楼层\房间 显示-->
       <div v-if="!loading" id="display-area">
-        <van-tabs v-model="active" @click="onTabClick">
+        <van-tabs v-model="tabsActiveIndex" @click="onTabClick">
           <div slot="nav-right" style=" margin-top:5px;margin-right:12px">
             <van-icon
-              v-show="allowModify"
+              v-show="isModify"
               class-prefix="my-icon"
               color="#c8c9cc"
               name="arrow-right"
@@ -47,7 +47,7 @@
             <div slot="title">
               {{ unit.unit_alias }}
               <van-icon
-                v-show="allowModify"
+                v-show="isModify"
                 class-prefix="my-icon"
                 name="chuangzuo"
                 size="14"
@@ -73,7 +73,7 @@
                       <div slot="default">
                         {{ floor.floor_alias }}
                         <van-icon
-                          v-show="allowModify"
+                          v-show="isModify"
                           class-prefix="my-icon"
                           name="chuangzuo"
                           size="14"
@@ -104,7 +104,7 @@
                 <!--楼层新增房间 -->
                 <van-col span="4">
                   <van-icon
-                    v-show="allowModify"
+                    v-show="isModify"
                     class-prefix="my-icon"
                     color="#c8c9cc"
                     name="add-select"
@@ -116,7 +116,7 @@
               <!--新增楼层-->
               <van-row>
                 <van-icon
-                  v-show="allowModify"
+                  v-show="isModify"
                   @click="editFloorClick('addnew', unit)"
                   class-prefix="my-icon"
                   color="#c8c9cc"
@@ -174,10 +174,10 @@ export default {
   data() {
     return {
       loading: true,
-      active: 0,
+      // tabsActive: 0,
       buildingId: '',
       objBuilding: {},
-      allowModify: false,
+      // isModify: false,
       menuShow: false
     };
   },
@@ -198,7 +198,6 @@ export default {
       },
       err => {
         this.loading = false;
-
         $toast.alert('获取数据失败！\n' + JSON.stringify(err), 5000);
       }
     );
@@ -210,6 +209,22 @@ export default {
       'estate/getters_estatePlateId'
     ]),
 
+    tabsActiveIndex: {
+      get: function() {
+        return this.$store.state.viewBuildingPortal.tabIndex;
+      },
+      set: function(value) {
+        this.$store.commit('viewBuildingPortal/setTabIndex', value);
+      }
+    },
+    isModify: {
+      get: function() {
+        return this.$store.state.viewBuildingPortal.isModify;
+      },
+      set: function(value) {
+        this.$store.commit('viewBuildingPortal/setModifyStatus', value);
+      }
+    },
     plate: function() {
       return this.objBuilding.buildingPlate;
     }
@@ -218,6 +233,8 @@ export default {
     onTabClick: function(name) {
       this.loading = true;
       var unit = this.objBuilding.units[name];
+
+      this.$store.commit('viewBuildingPortal/setTabIndex', name);
       buildingPortal.fetchFloorsAndRooms(unit, this.objBuilding).then(
         res => {
           window.console.log(res);
