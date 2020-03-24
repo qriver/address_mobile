@@ -1,7 +1,7 @@
 import { commonFunction } from '@/api/base.js';
 
 import api from '@/api';
-
+import store from '@/store';
 const buildingPortal = {
   loadData: async function(buildingId) {
     var objBuilding = '';
@@ -38,6 +38,9 @@ const buildingPortal = {
         unit.floors = res.data.result.floors;
         var rooms = res.data.result.rooms;
         putRoomInFloor(unit.floors, rooms);
+        store.commit('viewBuildingPortal/setModifyStatus', false);
+        store.commit('viewBuildingPortal/setTabIndex', 0);
+        this.isModify = false;
 
         sessionStorage.setItem('building', JSON.stringify(objBuilding));
         return objBuilding;

@@ -61,6 +61,7 @@
               >
                 <van-icon
                   class-prefix="my-icon"
+                  v-show="!this.isAddnew"
                   name="success"
                   @click="editPlateNumber"
                   size="28"
@@ -83,6 +84,7 @@
             <van-col span="24">
               <van-field :label="roomAliasTitle" input-align="left" placeholder="请输入房间门牌号">
                 <van-icon
+                  v-show="!this.isAddnew"
                   class-prefix="my-icon"
                   name="success"
                   size="28"

@@ -60,6 +60,9 @@ const dbAction = {
         }
         //调整楼层缓存数据，从旧楼层删除room，在新楼层增加room
         oldData.objFloor.rooms.splice(oldData.roomIdx, 1);
+        if (oldData.objUnit.floors[postData.display_index].rooms == undefined) {
+          oldData.objUnit.floors[postData.display_index].rooms = [];
+        }
         oldData.objUnit.floors[postData.display_index].rooms.push(oldData.objRoom);
         //保存到缓存
         sessionStorage.setItem('building', JSON.stringify(oldData.objBuilding));
