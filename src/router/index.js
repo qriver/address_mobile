@@ -54,6 +54,9 @@ const audit_portal = r =>
 const draw_rooms = r =>
   //eslint-disable-next-line no-undef
   require.ensure([], () => r(require('../views/estate/drawRooms/drawRooms')), 'draw_rooms');
+const room_portal = r =>
+  //eslint-disable-next-line no-undef
+  require.ensure([], () => r(require('../views/estate/roomPortal/roomPortal')), 'room_portal');
 
 //懒加载写法
 // const login = () => import('../views/login');
@@ -147,6 +150,11 @@ const routes = [
     path: '/audit/portal',
     name: 'audit_portal',
     component: audit_portal
+  },
+  {
+    path: '/room/portal',
+    name: 'room_portal',
+    component: room_portal
   }
 ];
 

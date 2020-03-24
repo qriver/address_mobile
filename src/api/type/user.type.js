@@ -4,23 +4,14 @@ function userObject() {
     userName: '',
     access_token: '',
     role: '',
-    department: {
-      deptId: '',
-      deptName: ''
-    },
-    grid: {
-      gridId: '',
-      gridName: ''
-    },
-    auditor: {
-      //审核人员
-      auditorId: '',
-      auditorName: '',
-      departMent: {
-        deptId: '',
-        deptName: ''
-      }
-    }
+    auditor_id: '',
+    auditor_name: '',
+    auditor_dept_id: '',
+    auditor_dept_name: '',
+    worker_id: '',
+    worker_name: '',
+    worker_dept_id: '',
+    worker_dept_name: ''
   };
   return userObject;
 }
