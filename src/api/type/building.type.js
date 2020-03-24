@@ -15,6 +15,7 @@ function buildingObject() {
     usedFlag: '', //是否已使用
     workerId: '',
     units: [],
+    isPrivate: 0,
     buildingPlate: {
       buildingId: '',
       buildingPlateId: '', //门牌编号
@@ -101,6 +102,7 @@ function roomObject() {
     used_flag: 0,
     worker_id: '',
     display_index: 0,
+    is_private: 0,
     room_plate: {
       room_id: '',
       floor_plate_id: '', //编号

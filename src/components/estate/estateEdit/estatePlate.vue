@@ -4,27 +4,89 @@ props: ['estateInstance','action']
     <!-- 项目情况介绍 -->
 
     <van-row style="margin-top:10px;">
-      <van-field v-show="false" label="省/市/区:" required input-align="right" right-icon="arrow" placeholder="请输入省/市/区" />
-      <van-field label="街路巷:" v-model="estatePlate.streetValue" required readonly clickable right-icon="arrow-down" input-align="right" placeholder="请输入街路巷" @click="onFieldClick('street')">
+      <van-field
+        v-show="false"
+        label="省/市/区:"
+        required
+        input-align="right"
+        right-icon="arrow"
+        placeholder="请输入省/市/区"
+      />
+      <!-- /<van-cell title="临时建筑:"> -->
+      <!-- <van-switch size="20" v-model="estatePlate.isPrivate" slot="right-icon" /> -->
+      <!-- /</van-cell> -->
+      <van-field
+        label="街路巷:"
+        v-model="estatePlate.streetValue"
+        required
+        readonly
+        clickable
+        right-icon="arrow-down"
+        input-align="right"
+        placeholder="请输入街路巷"
+        @click="onFieldClick('street')"
+      >
         <van-icon size="25" class-prefix="my-icon" name="arrow-right" slot="right-icon" />
       </van-field>
-      <van-field v-show="false" label="门牌前缀:" v-model="estatePlate.platePrefixValue" readonly clickable right-icon="arrow-down" input-align="right" placeholder="请输入门牌前缀" @click="onFieldClick('prefix')">
+      <van-field
+        v-show="false"
+        label="门牌前缀:"
+        v-model="estatePlate.platePrefixValue"
+        readonly
+        clickable
+        right-icon="arrow-down"
+        input-align="right"
+        placeholder="请输入门牌前缀"
+        @click="onFieldClick('prefix')"
+      >
         <van-icon size="25" class-prefix="my-icon" name="arrow-right" slot="right-icon" />
       </van-field>
-      <van-field label="门牌号:" v-model="estatePlate.plateNumber" type="digit" required input-align="right" placeholder="请输入门牌号" />
-      <van-field label="门牌后缀:" v-model="estatePlate.plateSuffixValue" required right-icon="arrow-down" input-align="right" placeholder="请输入门牌后缀" @click="onFieldClick('suffix')">
+      <van-field
+        label="门牌号:"
+        v-model="estatePlate.plateNumber"
+        type="digit"
+        required
+        input-align="right"
+        placeholder="请输入门牌号"
+      />
+      <van-field
+        label="门牌后缀:"
+        v-model="estatePlate.plateSuffixValue"
+        required
+        right-icon="arrow-down"
+        input-align="right"
+        placeholder="请输入门牌后缀"
+        @click="onFieldClick('suffix')"
+      >
         <van-icon size="25" class-prefix="my-icon" name="arrow-right" slot="right-icon" />
       </van-field>
 
       <van-row style="margin-top:1px;">
-        <van-field label="门牌别名:" v-model="estatePlate.plateAlias" required input-align="right" placeholder="例:XX小区/xxx私宅/xxx大厦" />
+        <van-field
+          label="门牌别名:"
+          v-model="estatePlate.plateAlias"
+          required
+          input-align="right"
+          placeholder="例:XX小区/xxx私宅/xxx大厦"
+        />
       </van-row>
       <van-row v-show="false" style="margin-top:1px;">
-        <van-field label="门牌全称:" v-model="estatePlate.plateDesc" readonly input-align="right" placeholder="门牌拼接后的全称" />
+        <van-field
+          label="门牌全称:"
+          v-model="estatePlate.plateDesc"
+          readonly
+          input-align="right"
+          placeholder="门牌拼接后的全称"
+        />
       </van-row>
     </van-row>
     <van-popup v-model="showPicker" position="bottom">
-      <van-picker show-toolbar :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
+      <van-picker
+        show-toolbar
+        :columns="columns"
+        @cancel="showPicker = false"
+        @confirm="onConfirm"
+      />
     </van-popup>
   </div>
 </template>
@@ -32,13 +94,14 @@ props: ['estateInstance','action']
 <script>
 // @ is an alias to /src
 // import Estate from '@/views/Estate.vue'
-import { Icon, Row, Col, Field, Popup, Picker } from 'vant';
+import { Icon, Row, Col, Field, Popup, Picker, Switch } from 'vant';
 import 'vant/lib/nav-bar/style';
 import 'vant/lib/row/style';
 import 'vant/lib/col/style';
 import 'vant/lib/field/style';
 import 'vant/lib/popup/style';
 import 'vant/lib/picker/style';
+// import 'vant/lib/switch/style';
 import { estateObject } from '@/api/type/estate.type.js';
 
 export default {
@@ -120,6 +183,7 @@ export default {
   components: {
     // [NavBar.name]: NavBar,
     [Icon.name]: Icon,
+    [Switch.name]: Switch,
     [Row.name]: Row,
     [Col.name]: Col,
     [Field.name]: Field,

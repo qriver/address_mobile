@@ -9,25 +9,48 @@
     <div class="estate-main">
       <van-cell-group title="楼栋门牌">
         <!-- <van-row style="margin-top:10px;"> -->
-        <van-field label="大门牌:" :value="this.estatePlateDesc" readonly required input-align="right" placeholder="请选择大门牌" />
-
+        <van-field
+          label="大门牌:"
+          :value="this.estatePlateDesc"
+          readonly
+          required
+          input-align="right"
+          placeholder="请选择大门牌"
+        />
+        <van-cell title="临时建筑:">
+          <van-switch size="20" v-model="objBuilding.isPrivate" slot="right-icon" />
+        </van-cell>
         <plate-prefix-control></plate-prefix-control>
 
-        <van-field label="楼栋号:" v-model="plate.plateNumber" required input-align="right" placeholder="请输入楼栋门牌" />
+        <van-field
+          label="楼栋号:"
+          v-model="plate.plateNumber"
+          required
+          input-align="right"
+          placeholder="请输入楼栋门牌"
+        />
         <plate-suffix-control></plate-suffix-control>
-
+        <van-cell title="门牌中是否显示：">
+          <van-switch size="20" v-model="objBuilding.isPrivate" slot="right-icon" />
+        </van-cell>
         <!-- </van-row> -->
       </van-cell-group>
       <van-cell-group v-if="isAddnew(this)" title="基础信息">
         <!-- <van-row style="margin-top:10px;"> -->
-        <van-field label="楼栋名称:" v-show="false" v-model="objBuilding.buildingAlias" input-align="right" placeholder="请输入楼栋的名称" />
-        <van-cell title='楼栋单元数'>
+        <van-field
+          label="楼栋名称:"
+          v-show="false"
+          v-model="objBuilding.buildingAlias"
+          input-align="right"
+          placeholder="请输入楼栋的名称"
+        />
+        <van-cell title="楼栋单元数">
           <van-stepper v-model="objBuilding.unitCount" min="1" max="20" />
         </van-cell>
-        <van-cell title='每单元楼层数'>
+        <van-cell title="每单元楼层数">
           <van-stepper v-model="objBuilding.floorCount" min="0" max="20" />
         </van-cell>
-        <van-cell title='每层户数'>
+        <van-cell title="每层户数">
           <van-stepper v-model="objBuilding.roomCount" min="0" max="20" />
         </van-cell>
 
@@ -35,18 +58,40 @@
       </van-cell-group>
 
       <van-row v-show="this.$store.state.user.role == 'worker'" style="margin-top:10px;">
-        <van-button v-if="isAddnew(this)" style=" height:30px;line-height:30px;" @click="onDrawRoomClick()" type="info" color="#409eff" block>构建楼栋结构图</van-button>
-
+        <van-button
+          v-if="isAddnew(this)"
+          style=" height:30px;line-height:30px;"
+          @click="onDrawRoomClick()"
+          type="info"
+          color="#409eff"
+          block
+          >构建楼栋结构图</van-button
+        >
       </van-row>
 
       <div v-if="!isAddnew(this)" v-show="this.$store.state.user.role == 'worker'">
         <!-- <van-row v-show="this.$store.state.user.role == 'worker'" style="width:100%;margin-bottom:2px;margin-right:10px; "> -->
-        <van-button style=" height:40px;width:100%;margin-right:10px" @click="onSaveClick()" plain type="info"> 保存</van-button>
+        <van-button
+          style=" height:40px;width:100%;margin-right:10px"
+          @click="onSaveClick()"
+          plain
+          type="info"
+        >
+          保存</van-button
+        >
 
-        <van-button plain type="info" color="#ff976a" style=" height:40px;width:100%;margin-right:10px" block @click="onDeleteClick()"> 删除</van-button>
+        <van-button
+          plain
+          type="info"
+          color="#ff976a"
+          style=" height:40px;width:100%;margin-right:10px"
+          block
+          @click="onDeleteClick()"
+        >
+          删除</van-button
+        >
         <!-- </van-row> -->
       </div>
-
     </div>
 
     <router-view></router-view>
@@ -55,7 +100,20 @@
 
 <script>
 //import estateSummary from '@/components/estate/estate-summary.vue';
-import { NavBar, Icon, Field, Button, Row, Col, Tabs, Tab, Cell, CellGroup, Stepper } from 'vant';
+import {
+  NavBar,
+  Icon,
+  Field,
+  Button,
+  Row,
+  Col,
+  Tabs,
+  Tab,
+  Cell,
+  CellGroup,
+  Switch,
+  Stepper
+} from 'vant';
 
 import 'vant/lib/nav-bar/style';
 import 'vant/lib/tabs/style';
@@ -67,6 +125,7 @@ import 'vant/lib/stepper/style';
 import 'vant/lib/cell-group/style';
 import 'vant/lib/row/style';
 import 'vant/lib/col/style';
+import 'vant/lib/switch/style';
 import { buildingObject } from '@/api/type/building.type.js';
 // import { createBuildingStruct } from './buildingEdit.addon.js';
 import platePrefixControl from '@/components/estate/buildingEdit/platePrefixControl.vue';
@@ -77,6 +136,7 @@ export default {
   data() {
     return {
       loading: true,
+
       objBuilding: {}
     };
   },
@@ -171,6 +231,7 @@ export default {
     [Row.name]: Row,
     [Col.name]: Col,
     [Cell.name]: Cell,
+    [Switch.name]: Switch,
     [Stepper.name]: Stepper,
     [CellGroup.name]: CellGroup,
     platePrefixControl,
@@ -189,6 +250,6 @@ export default {
 }
 </style>
 
-<style   lang="scss">
+<style lang="scss">
 @import '@/assets/style/my-vant';
 </style>

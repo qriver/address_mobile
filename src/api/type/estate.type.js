@@ -17,6 +17,7 @@ function estateObject() {
     status: '0',
     workerId: '',
     usedFlag: '0',
+    isPrivate: 0,
     estatePlate: {
       estatePlateId: '', //门牌编号
       plateAlias: '', //门牌别名

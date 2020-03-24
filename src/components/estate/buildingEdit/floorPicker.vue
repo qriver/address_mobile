@@ -2,7 +2,7 @@
 <template>
   <div id="floor-picker">
     <van-row>
-      <van-col span="20">
+      <van-col span="24">
         <van-field
           label="修改楼层"
           required
@@ -13,18 +13,25 @@
           placeholder="请选择楼层"
           @click="onFieldClick()"
         >
+          <van-icon
+            class-prefix="my-icon"
+            name="arrow-right"
+            size="28"
+            color="#409eff"
+            slot="right-icon"
+          />
         </van-field>
       </van-col>
-      <van-col span="4">
-        <!-- <van-button
+      <!-- <van-col span="4">
+        <van-button
           style="margin-top:5px"
           size="small"
           hairline
           type="info"
           @click="onConfirm('save')"
           >保存
-        </van-button> -->
-      </van-col>
+        </van-button>
+      </van-col> -->
     </van-row>
 
     <van-popup v-model="showPicker" position="bottom">

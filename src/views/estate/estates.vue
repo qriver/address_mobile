@@ -3,7 +3,12 @@
     <div class="estate-title">
       <div class="my-van">
         <!-- <estates-header></estates-header> -->
-        <van-nav-bar title="门牌地址信息列表" right-text="新增" left-text="搜索" @click-right="onClickAddnew" />
+        <van-nav-bar
+          title="门牌地址信息列表"
+          right-text="新增"
+          left-text="搜索"
+          @click-right="onClickAddnew"
+        />
       </div>
     </div>
     <div class="estate-main">
@@ -19,9 +24,10 @@
 <script>
 // @ is an alias to /src
 // import Estate from '@/views/Estate.vue'
-import { NavBar } from 'vant';
+import { NavBar, Switch } from 'vant';
 import footerNav from '@/components/base/footer.vue';
 import 'vant/lib/nav-bar/style';
+import 'vant/lib/switch/style';
 // import estatesHeader from '@/components/estate/estatesHeader.vue';
 import estateList from '@/components/estate/estateList.vue';
 
@@ -76,6 +82,7 @@ export default {
   components: {
     footerNav,
     [NavBar.name]: NavBar,
+    [Switch.name]: Switch,
     // estatesHeader,
     estateList
   }

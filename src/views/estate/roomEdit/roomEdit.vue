@@ -28,15 +28,18 @@
             input-align="left"
             placeholder="请输入房间门牌号"
           />
+          <van-cell title="是否临时建筑:">
+            <van-switch size="20" v-model="postData.is_private" slot="right-icon" />
+          </van-cell>
           <!-- 修改楼层 -->
           <van-row v-show="!this.isAddnew">
-            <van-col span="20">
+            <van-col span="24">
               <floor-picker
                 :objUnit="this.oldData.objUnit"
                 @floor-picker-confirm="floorPickerConfirm"
               ></floor-picker>
             </van-col>
-            <van-col span="4">
+            <!-- <van-col span="4">
               <van-button
                 style="margin-top:5px"
                 size="small"
@@ -45,40 +48,53 @@
                 @click="this.editRoomFloor"
                 >保存
               </van-button>
-            </van-col>
+            </van-col> -->
           </van-row>
           <!-- 修改门牌 -->
           <van-row>
-            <van-col span="20">
+            <van-col span="24">
               <van-field
                 v-model="new_plate_number"
                 :label="this.roomPlateTitle"
                 input-align="left"
                 placeholder="请输入房间门牌号"
               >
-              </van-field
+                <van-icon
+                  class-prefix="my-icon"
+                  name="success"
+                  @click="editPlateNumber"
+                  size="28"
+                  color="#409eff"
+                  slot="right-icon"
+                /> </van-field
             ></van-col>
-            <van-col span="4">
+            <!-- <van-col span="4">
               <van-button
                 v-show="!this.isAddnew"
                 size="small"
                 hairline
                 type="info"
                 @click="editPlateNumber"
-                >保存</van-button
-              ></van-col
-            >
+                >保存</van-button>
+              <van-icon class-prefix="my-icon" name="success" size="20" />
+            </van-col> -->
           </van-row>
           <van-row>
-            <van-col span="20">
+            <van-col span="24">
               <van-field :label="roomAliasTitle" input-align="left" placeholder="请输入房间门牌号">
-              </van-field
+                <van-icon
+                  class-prefix="my-icon"
+                  name="success"
+                  size="28"
+                  color="#409eff"
+                  slot="right-icon"
+                /> </van-field
             ></van-col>
-            <van-col span="4">
+            <!-- <van-col span="4">
               <van-button v-show="!this.isAddnew" size="small" hairline type="info"
                 >保存</van-button
               ></van-col
-            >
+            > -->
           </van-row>
         </van-cell-group>
 
@@ -97,7 +113,15 @@
             placeholder="请输入新的房间门牌号"
             right-icon=""
           />
-          <van-field label="修改房间别名" input-align="right" placeholder="原来的房间门牌号" />
+          <van-field label="修改房间别名" input-align="right" placeholder="原来的房间门牌号">
+            <van-icon
+              class-prefix="my-icon"
+              name="success"
+              size="28"
+              color="#409eff"
+              slot="right-icon"
+            />
+          </van-field>
         </van-cell-group>
 
         <van-row style="margin-top:10px; ">
@@ -130,10 +154,11 @@
 
 <script>
 //import estateSummary from '@/components/estate/estate-summary.vue';
-import { NavBar, Icon, Field, Button, Cell, CellGroup, Row, Col } from 'vant';
+import { NavBar, Icon, Field, Button, Cell, CellGroup, Switch, Row, Col } from 'vant';
 import 'vant/lib/nav-bar/style';
 import 'vant/lib/field/style';
 import 'vant/lib/button/style';
+import 'vant/lib/switch/style';
 import 'vant/lib/cell/style';
 import 'vant/lib/cell-group/style';
 import 'vant/lib/row/style';
@@ -205,6 +230,7 @@ export default {
       //display_index在变更过程中没有用到，这里用来临时存放新楼层索引值
 
       this.postData.display_index = index;
+      this.editRoomFloor();
     },
     editRoomFloor() {
       if (dbAction.updateFloor(this.oldData, this.postData)) {
@@ -261,6 +287,7 @@ export default {
 
   components: {
     [NavBar.name]: NavBar,
+    [Switch.name]: Switch,
     [Icon.name]: Icon,
     [Field.name]: Field,
     [Button.name]: Button,

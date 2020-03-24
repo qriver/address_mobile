@@ -10,29 +10,100 @@
       <van-tabs v-model="active">
         <!-- 门牌 -->
         <van-tab title="门牌号">
-          <estate-plate ref="plateComponent" :estateInstance="objEstate" :action="action"></estate-plate>
+          <estate-plate
+            ref="plateComponent"
+            :estateInstance="objEstate"
+            :action="action"
+          ></estate-plate>
           <van-row style="margin-top:10px;">
-            <van-field label="项目名称:" v-model="objEstate.name" required input-align="right" placeholder="请输入土地证登记项目名称" />
-            <van-field label="建设单位:" v-model="objEstate.owner" required input-align="right" placeholder="请输入土地证登记使用单位" />
+            <van-cell title="是否临时建筑:">
+              <van-switch size="20" v-model="objEstate.isPrivate" />
+            </van-cell>
+            <van-field
+              label="项目名称:"
+              v-model="objEstate.name"
+              required
+              input-align="right"
+              placeholder="请输入土地证登记项目名称"
+            />
+            <van-field
+              label="建设单位:"
+              v-model="objEstate.owner"
+              required
+              input-align="right"
+              placeholder="请输入土地证登记使用单位"
+            />
           </van-row>
 
           <van-row style="margin-top:10px;">
-            <van-field label="用地位置:" v-model="objEstate.position" input-align="right" placeholder="请输入用地位置" />
-            <van-field label="宗地号:" v-model="objEstate.areaNo" input-align="right" placeholder="请输入宗地号" />
-            <van-field label="建筑性质:" v-model="objEstate.type" input-align="right" placeholder="请输入建筑性质" />
-            <van-field label="立项时间:" v-model="objEstate.createDate" input-align="right" placeholder="请输入立项时间" />
+            <van-field
+              label="用地位置:"
+              v-model="objEstate.position"
+              input-align="right"
+              placeholder="请输入用地位置"
+            />
+            <van-field
+              label="宗地号:"
+              v-model="objEstate.areaNo"
+              input-align="right"
+              placeholder="请输入宗地号"
+            />
+            <van-field
+              label="建筑性质:"
+              v-model="objEstate.type"
+              input-align="right"
+              placeholder="请输入建筑性质"
+            />
+            <van-field
+              label="立项时间:"
+              v-model="objEstate.createDate"
+              input-align="right"
+              placeholder="请输入立项时间"
+            />
           </van-row>
           <van-row style="margin-top:10px;">
-            <van-field label="栋数:" v-model="objEstate.buildingCount" input-align="right" placeholder="请输入栋数" />
-            <van-field label="建筑面积:" v-model="objEstate.space" input-align="right" placeholder="请输入建筑面积" />
-            <van-field label="建筑功能:" v-model="objEstate.purpose" input-align="right" placeholder="请输入建筑功能" />
+            <van-field
+              label="栋数:"
+              v-model="objEstate.buildingCount"
+              input-align="right"
+              placeholder="请输入栋数"
+            />
+            <van-field
+              label="建筑面积:"
+              v-model="objEstate.space"
+              input-align="right"
+              placeholder="请输入建筑面积"
+            />
+            <van-field
+              label="建筑功能:"
+              v-model="objEstate.purpose"
+              input-align="right"
+              placeholder="请输入建筑功能"
+            />
           </van-row>
           <div style="width: 100%;height:60px;"></div>
           <div v-show="this.$store.state.user.role == 'worker'" class="estate-footer">
             <!-- <van-row v-show="this.$store.state.user.role == 'worker'" style="width:100%;margin-bottom:2px;margin-right:10px; "> -->
-            <van-button style=" height:100%;width:100%;margin-right:10px" @click="onSaveClick()" plain type="info"> 保存</van-button>
+            <van-button
+              style=" height:100%;width:100%;margin-right:10px"
+              @click="onSaveClick()"
+              plain
+              type="info"
+            >
+              保存</van-button
+            >
 
-            <van-button v-show="!isAddnew" plain type="info" color="#ff976a" style=" height:100%;width:100%;margin-right:10px" block @click="onDeleteClick()"> 删除</van-button>
+            <van-button
+              v-show="!isAddnew"
+              plain
+              type="info"
+              color="#ff976a"
+              style=" height:100%;width:100%;margin-right:10px"
+              block
+              @click="onDeleteClick()"
+            >
+              删除</van-button
+            >
             <!-- </van-row> -->
           </div>
         </van-tab>
@@ -50,7 +121,7 @@
 
 <script>
 //import estateSummary from '@/components/estate/estate-summary.vue';
-import { NavBar, Field, Button, Row, Col, Tabs, Tab, Icon } from 'vant';
+import { NavBar, Field, Button, Row, Col, Cell, Tabs, Tab, Icon, Switch, CellGroup } from 'vant';
 import 'vant/lib/nav-bar/style';
 import 'vant/lib/tabs/style';
 import 'vant/lib/tab/style';
@@ -60,6 +131,7 @@ import 'vant/lib/cell/style';
 import 'vant/lib/cell-group/style';
 import 'vant/lib/row/style';
 import 'vant/lib/col/style';
+import 'vant/lib/switch/style';
 import estatePlate from '@/components/estate/estateEdit/estatePlate.vue';
 import { estateObject } from '@/api/type/estate.type.js';
 import { SaveEstateToDb, UpdateEstateToDb, DeleteEstateFromDb } from './estateEdit.addon.js';
@@ -123,11 +195,13 @@ export default {
     [NavBar.name]: NavBar,
     // [Icon.name]: Icon,
     [Field.name]: Field,
+    [Switch.name]: Switch,
     [Button.name]: Button,
     [Tabs.name]: Tabs,
     [Tab.name]: Tab,
     [Row.name]: Row,
     [Col.name]: Col,
+    [Cell.name]: Cell,
     [Icon.name]: Icon,
     estatePlate
   }

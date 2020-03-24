@@ -93,7 +93,12 @@ CREATE TABLE Building
 	estate_id            VARCHAR(36) NULL,
 	building_plate_id    VARCHAR(36) NULL,
 	worker_id            VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp()
+	create_date          DATETIME NULL DEFAULT current_timestamp(),
+	is_private           CHAR(18) NULL DEFAULT 0,
+	x_84                 DOUBLE NULL,
+	y_84                 DOUBLE NULL,
+	x_54                 DOUBLE NULL,
+	y_54                 DOUBLE NULL
 );
 
 
@@ -118,7 +123,8 @@ CREATE TABLE building_Plate
 	plate_prefix_value   VARCHAR(10) NULL,
 	plate_alias          VARCHAR(30) NULL,
 	worker_id            VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp()
+	create_date          DATETIME NULL DEFAULT current_timestamp(),
+	is_show              INTEGER NULL DEFAULT 0
 );
 
 
@@ -144,7 +150,8 @@ CREATE TABLE estate
 	estate_plate_id      VARCHAR(36) NULL,
 	audit_status         VARCHAR(1) NULL DEFAULT '0',
 	worker_id            VARCHAR(32) NULL,
-	type                 VARCHAR(20) NULL
+	type                 VARCHAR(20) NULL,
+	is_private           CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -207,7 +214,8 @@ CREATE TABLE floor
 	building_id          VARCHAR(36) NULL,
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	display_index        INTEGER NULL
+	display_index        INTEGER NULL,
+	is_private           CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -231,7 +239,8 @@ CREATE TABLE floor_plate
 	plate_desc           VARCHAR(20) NULL,
 	plate_alias          VARCHAR(20) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp()
+	create_date          DATETIME NULL DEFAULT current_timestamp(),
+	is_show              CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -252,7 +261,8 @@ CREATE TABLE room
 	building_id          VARCHAR(36) NULL,
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	display_index        INTEGER NULL
+	display_index        INTEGER NULL,
+	is_private           CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -276,7 +286,8 @@ CREATE TABLE room_plate
 	plate_alias          VARCHAR(20) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
 	plate_desc           VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp()
+	create_date          DATETIME NULL DEFAULT current_timestamp(),
+	is_show              CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -355,7 +366,8 @@ CREATE TABLE unit
 	used_flag            VARCHAR(1) NULL,
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	display_index        INTEGER NULL
+	display_index        INTEGER NULL,
+	is_private           CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -378,7 +390,8 @@ CREATE TABLE unit_plate
 	plate_desc           VARCHAR(20) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
 	plate_alias          VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp()
+	create_date          DATETIME NULL DEFAULT current_timestamp(),
+	is_show              CHAR(18) NULL DEFAULT 0
 );
 
 
@@ -450,5 +463,3 @@ ADD FOREIGN KEY R_14 (unit_id) REFERENCES unit (unit_id);
 
 ALTER TABLE unit_plate
 ADD FOREIGN KEY R_15 (building_plate_id) REFERENCES building_Plate (building_plate_id);
-
-
