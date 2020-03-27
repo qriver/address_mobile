@@ -127,8 +127,19 @@ CREATE TABLE estate
 	estate_plate_id      VARCHAR(36) NULL,
 	audit_status         VARCHAR(1) NULL DEFAULT '0',
 	worker_id            VARCHAR(32) NULL,
+  auditor_id           VARCHAR(32) NULL,
 	type                 VARCHAR(20) NULL,
-	is_private           CHAR(1) NULL DEFAULT 1
+	is_private           CHAR(1) NULL DEFAULT 1,
+  worker_dept_id       VARCHAR(20) NULL,
+  worker_dept_name     VARCHAR(20) NULL,
+  auditor_dept_id      VARCHAR(20) NULL,
+  auditor_dept_name    VARCHAR(20) NULL,
+	province             VARCHAR(20) NULL DEFAULT '湖北省',
+	city                 VARCHAR(20) NULL,
+	district             VARCHAR(18) NULL,
+	province_id          VARCHAR(2) NULL DEFAULT '42',
+	city_id              VARCHAR(4) NULL,
+	district_id          VARCHAR(6) NULL
 );
 
 
@@ -169,7 +180,13 @@ CREATE TABLE estate_plate
 	street_value         VARCHAR(50) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
 	plate_prefix_value   VARCHAR(20) NULL,
-	worker_id            VARCHAR(20) NULL
+	worker_id            VARCHAR(20) NULL,
+  province             VARCHAR(20) NULL DEFAULT '湖北省',
+	city                 VARCHAR(20) NULL,
+	district             VARCHAR(18) NULL,
+	province_id          VARCHAR(2) NULL DEFAULT '42',
+	city_id              VARCHAR(4) NULL,
+	district_id          VARCHAR(6) NULL
 );
 
 
@@ -192,7 +209,7 @@ CREATE TABLE floor
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
 	display_index        INTEGER NULL,
-	is_private           CHAR(1) NULL DEFAULT 1
+	is_private           VARCHAR(1) NULL DEFAULT 1
 );
 
 
@@ -238,7 +255,11 @@ CREATE TABLE room
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
 	display_index        INTEGER NULL,
-	is_private           CHAR(1) NULL DEFAULT 1
+	is_private           CHAR(1) NULL DEFAULT 1,
+  worker_dept_id       VARCHAR(20) NULL,
+  worker_dept_name     VARCHAR(20) NULL,
+  auditor_dept_id      VARCHAR(20) NULL,
+  auditor_dept_name    VARCHAR(20) NULL
 );
 
 
@@ -259,7 +280,6 @@ CREATE TABLE room_plate
 	room_plate_id        VARCHAR(36) NOT NULL,
 	building_plate_id    VARCHAR(36) NULL,
 	worker_id            VARCHAR(20) NULL,
-	plate_alias          VARCHAR(20) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
 	plate_desc           VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),

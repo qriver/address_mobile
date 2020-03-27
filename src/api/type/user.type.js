@@ -1,7 +1,7 @@
 function userObject() {
   const userObject = {
-    userId: '',
-    userName: '',
+    user_id: '',
+    user_name: '',
     access_token: '',
     role: '',
     auditor_id: '',

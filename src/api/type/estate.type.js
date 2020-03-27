@@ -18,6 +18,16 @@ function estateObject() {
     workerId: '',
     usedFlag: '0',
     isPrivate: 0,
+    worker_dept_id: '',
+    worker_dept_name: '',
+    auditor_dept_id: '',
+    auditor_dept_name: '',
+    province: '湖北省',
+    city: '',
+    district: '',
+    province_id: '42',
+    city_id: '',
+    district_id: '',
     estatePlate: {
       estatePlateId: '', //门牌编号
       plateAlias: '', //门牌别名

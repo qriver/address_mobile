@@ -22,7 +22,7 @@ require('./mock/mock.js');
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-  var isLogin = store.state.user.userId;
+  var isLogin = store.state.user.user_id;
   if (!isLogin) {
     if (to.path !== '/login') {
       //跳转到登录页

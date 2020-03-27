@@ -6,8 +6,13 @@
 		</div>
 		<div v-if="!loading" style="z-index:10">
 			<van-row style="margin-top:10px;">
-				<van-field label="行政区划:" input-align="right" />
-				<van-field label="门牌全称:" :value="this.plateDesc()" input-align="right" />
+				<van-field label="行政区划:" :value="this.division" input-align="right" />
+				<van-field
+					label="门牌全称:"
+					:value="this.plateDesc()"
+					label-width="60px"
+					input-align="right"
+				/>
 
 				<van-field label="楼栋显示:" readonly input-align="right">
 					<van-switch
@@ -77,6 +82,7 @@
 	export default {
 		data() {
 			return {
+				division: '',
 				loading: 'true',
 				estatePlate: '',
 				buildingPlate: '',
@@ -106,6 +112,8 @@
 						this.loading = false;
 						return;
 					}
+					this.division =
+						res.data.result.province + '/' + res.data.result.city + '/' + res.data.result.district;
 					this.roomPlateId = res.data.result.room_plate_id;
 					this.estatePlate = res.data.result.estate_plate_desc;
 					this.buildingPlate = res.data.result.building_plate_desc;

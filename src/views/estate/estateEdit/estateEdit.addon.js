@@ -18,7 +18,13 @@ const SaveEstateToDb = (estate, that) => {
       $toast.loading('正在保存...', 0);
 
       estate.estatePlate.plate_desc = computePlateDesc(estate);
-      estate.worker_id = that.$store.state.user.userId;
+      estate.worker_id = that.$store.state.user.user_id;
+      estate.worker_dept_id = that.$store.state.user.worker_dept_id;
+      estate.worker_dept_name = that.$store.state.user.worker_dept_name;
+      estate.city_id = that.$store.state.user.city_id;
+      estate.city = that.$store.state.user.city;
+      estate.district_id = that.$store.state.user.district_id;
+      estate.district = that.$store.state.user.district;
       //调用 restful接口函数`
 
       const params = Object.assign({}, params, {

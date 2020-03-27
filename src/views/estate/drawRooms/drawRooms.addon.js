@@ -88,9 +88,9 @@ function createRooms(floorInstance) {
     var uId = floorInstance.floor_plate.plate_number;
     room.room_plate.plate_number = String(uId) + '0' + String(i + 1);
     room.room_plate.plate_desc = room.room_plate.plate_number + '室';
-    room.room_plate.plate_alias = room.room_plate.plate_number + '室';
+    // room.room_plate.plate_alias = room.room_plate.plate_number + '室';
 
-    room.room_alias = room.room_plate.plate_alias;
+    room.room_alias = room.room_plate.plate_number + '室';
     floorInstance.rooms.push(room);
   }
 

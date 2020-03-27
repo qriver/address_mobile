@@ -103,6 +103,10 @@ function roomObject() {
     worker_id: '',
     display_index: 0,
     is_private: 1,
+    worker_dept_id: '',
+    worker_dept_name: '',
+    auditor_dept_id: '',
+    auditor_dept_name: '',
     room_plate: {
       room_id: '',
       floor_plate_id: '', //编号
