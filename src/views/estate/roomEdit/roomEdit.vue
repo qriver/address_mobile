@@ -47,23 +47,22 @@
 					</van-row>
 					<!-- 修改门牌 -->
 					<van-row>
-						<van-col span="24">
-							<van-field
-								v-model="new_plate_number"
-								:label="this.roomPlateTitle"
-								input-align="left"
-								placeholder="请输入房间门牌号"
-							>
-								<van-icon
-									class-prefix="my-icon"
-									v-show="!this.isAddnew"
-									name="success"
-									@click="editPlateNumber"
-									size="28"
-									color="#409eff"
-									slot="right-icon"
-								/> </van-field
-						></van-col>
+						<van-field
+							v-model="new_plate_number"
+							:label="this.roomPlateTitle"
+							input-align="left"
+							placeholder="请输入房间门牌号"
+						>
+							<van-icon
+								class-prefix="my-icon"
+								v-show="!this.isAddnew"
+								name="success"
+								@click="editPlateNumber"
+								size="28"
+								color="#409eff"
+								slot="right-icon"
+							/>
+						</van-field>
 					</van-row>
 					<van-row>
 						<van-col span="24">
@@ -183,7 +182,9 @@
 			this.oldData.objBuilding = JSON.parse(sessionStorage.getItem('building'));
 			this.oldData.objUnit = this.oldData.objBuilding.units[this.$route.params.unitIdx];
 			this.oldData.unitIdx = this.$route.params.unitIdx;
+
 			this.oldData.objFloor = this.oldData.objUnit.floors[this.$route.params.floorIdx];
+
 			this.oldData.floorIdx = this.$route.params.floorIdx;
 			this.postData = new roomObject();
 			this.postData.worker_id = this.$store.state.user.userId;
@@ -194,6 +195,7 @@
 			if (!this.isAddnew) {
 				this.oldData.objRoom = this.oldData.objFloor.rooms[this.$route.params.roomIdx];
 				this.oldData.roomIdx = this.$route.params.roomIdx;
+
 				this.postData.is_private = this.oldData.objRoom.is_private;
 
 				this.old_plate_desc =

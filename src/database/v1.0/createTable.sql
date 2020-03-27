@@ -1,8 +1,4 @@
 
-DROP TABLE AUDIT;
-
-
-
 DROP TABLE estate_owner;
 
 
@@ -63,24 +59,6 @@ DROP TABLE T_XZQH;
 
 
 
-CREATE TABLE AUDIT
-(
-	estate_id            VARCHAR(32) NULL,
-	create_date          DATE NULL,
-	audit_content        VARCHAR(20) NULL,
-	state                VARCHAR(100) NULL,
-	auditor              VARCHAR(100) NULL,
-	worker               VARCHAR(20) NULL,
-	id                   VARCHAR(32) NOT NULL
-);
-
-
-
-ALTER TABLE AUDIT
-ADD PRIMARY KEY (id);
-
-
-
 CREATE TABLE Building
 (
 	building_id          VARCHAR(36) NOT NULL,
@@ -123,8 +101,7 @@ CREATE TABLE building_Plate
 	plate_prefix_value   VARCHAR(10) NULL,
 	plate_alias          VARCHAR(30) NULL,
 	worker_id            VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	is_show              INTEGER NULL DEFAULT 0
+	create_date          DATETIME NULL DEFAULT current_timestamp()
 );
 
 
@@ -239,8 +216,7 @@ CREATE TABLE floor_plate
 	plate_desc           VARCHAR(20) NULL,
 	plate_alias          VARCHAR(20) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	is_show              CHAR(18) NULL DEFAULT 0
+	create_date          DATETIME NULL DEFAULT current_timestamp()
 );
 
 
@@ -287,7 +263,10 @@ CREATE TABLE room_plate
 	plate_suffix_value   VARCHAR(20) NULL,
 	plate_desc           VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	is_show              CHAR(18) NULL DEFAULT 0
+	building_plate_show  INTEGER NULL DEFAULT 0,
+	unit_plate_show      INTEGER NULL DEFAULT 0,
+	floor_plate_show     INTEGER NULL DEFAULT 0,
+	room_plate_show      INTEGER NULL DEFAULT 0
 );
 
 
@@ -390,8 +369,7 @@ CREATE TABLE unit_plate
 	plate_desc           VARCHAR(20) NULL,
 	plate_suffix_value   VARCHAR(20) NULL,
 	plate_alias          VARCHAR(20) NULL,
-	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	is_show              CHAR(18) NULL DEFAULT 0
+	create_date          DATETIME NULL DEFAULT current_timestamp()
 );
 
 

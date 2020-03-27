@@ -255,6 +255,7 @@
 			},
 
 			editRoomClick: function(action, unit, floor, room) {
+				//switch不处于编辑状态，点击进入roomPortal页面
 				if (!this.isModify) {
 					this.$router.push({
 						name: 'room_portal',
@@ -275,7 +276,7 @@
 						}
 					});
 				} else {
-					// sessionStorage.setItem('unit', JSON.stringify(unit));
+					sessionStorage.setItem('unit', JSON.stringify(unit));
 					this.$router.push({
 						name: 'room_edit',
 						params: {

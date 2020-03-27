@@ -9,6 +9,9 @@
 		<div class="estate-main">
 			<van-tabs v-model="active">
 				<!-- 门牌 -->
+				<van-tab title="门牌详情">
+					<room-plate-panel :roomId="this.roomId"></room-plate-panel>
+				</van-tab>
 				<van-tab title="产权信息">
 					<van-row style="margin-top:10px;">
 						<van-field
@@ -82,27 +85,22 @@
 	import 'vant/lib/row/style';
 	import 'vant/lib/col/style';
 	import 'vant/lib/switch/style';
+	import roomPlatePanel from '@/components/estate/roomPortal/roomPlatePanel.vue';
 
 	export default {
 		name: 'estate-edit',
 		data() {
 			return {
+				roomId: '',
+
 				active: 0,
 				objEstate: {},
 				action: ''
 			};
 		},
 		created: function() {
-			this.action = this.$route.params.action;
-			// var estate_id = this.$route.params.estate_id;
-			// window.console.log(this.action);
-
-			if (this.action === 'Addnew') {
-				//
-			}
-			if (this.action === 'edit') {
-				//  this.objEstate = JSON.parse(sessionStorage.getItem('estate'));
-			}
+			this.roomId = this.$route.params.roomId;
+			//
 		},
 		computed: {
 			// 计算属性的 getter
@@ -134,7 +132,8 @@
 			[Row.name]: Row,
 			[Col.name]: Col,
 			[Cell.name]: Cell,
-			[Icon.name]: Icon
+			[Icon.name]: Icon,
+			roomPlatePanel
 		}
 	};
 </script>

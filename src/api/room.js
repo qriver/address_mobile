@@ -15,6 +15,18 @@ const room = {
         });
     });
   },
+  getRoomPlateElments(params) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${base.url1}/room/getElments`, params)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
   updateRoom(params) {
     return new Promise((resolve, reject) => {
       axios
