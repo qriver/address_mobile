@@ -132,6 +132,42 @@ const dbAction = {
       $toast.alert('保存失败\n' + JSON.stringify(error), 5000);
       return false;
     }
+  },
+  updatePlatePrivateStatus: async function(oldData, postData) {
+    var roomPost = {};
+    roomPost.room_id = oldData.objRoom.room_id;
+
+    roomPost.is_private = postData.is_private;
+
+    const params = Object.assign({}, params, {
+      room: roomPost
+    });
+
+    $toast.loading('正在保存...', 0);
+    var res = await api.room.updateRoom(params);
+    try {
+      $toast.close();
+      if (res.data.statusCode !== '-1') {
+        $toast.success('保存成功！', 1500);
+        for (let key in roomPost) {
+          oldData.objRoom[key] = roomPost[key];
+        }
+        //保存到缓存
+
+        return true;
+      } else {
+        window.console.log(res.data.result);
+
+        $toast.close();
+        $toast.alert('保存失败\n' + JSON.stringify(res.data.result), 5000);
+        return false;
+      }
+    } catch (error) {
+      $toast.close();
+      window.console.log(error);
+      $toast.alert('保存失败\n' + JSON.stringify(error), 5000);
+      return false;
+    }
   }
 };
 

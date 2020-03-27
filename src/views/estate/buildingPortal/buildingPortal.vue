@@ -69,7 +69,7 @@
 									<div class="span">
 										<!-- 定义一个不显示标签，记录每一个元素对应的索引值 -->
 										<div v-show="false">{{ (floor.display_index = floor_id) }}</div>
-										<van-tag type="primary" size="large" plain>
+										<van-tag type="success" size="large" plain>
 											<div slot="default">
 												{{ floor.floor_alias }}
 												<van-icon
@@ -91,7 +91,7 @@
 											<!-- 定义一个不显示标签，记录每一个元素对应的索引值 -->
 											<div v-show="false">{{ (room.display_index = room_id) }}</div>
 											<van-tag
-												type="sucess"
+												:type="roomColor(room.is_private)"
 												round
 												size="medium"
 												plain
@@ -230,6 +230,13 @@
 			}
 		},
 		methods: {
+			roomColor: function(value) {
+				if (value == 0) {
+					return 'warning';
+				} else {
+					return 'success';
+				}
+			},
 			onTabClick: function(name) {
 				this.loading = true;
 				var unit = this.objBuilding.units[name];
@@ -407,7 +414,7 @@
 		scroll-margin-bottom: 2px;
 	}
 
-	.building-portal-page .van-tag {
-		color: $green;
-	}
+	// .building-portal-page .van-tag {
+	// 	color: $green;
+	// }
 </style>

@@ -102,7 +102,7 @@ function roomObject() {
     used_flag: 0,
     worker_id: '',
     display_index: 0,
-    is_private: 0,
+    is_private: 1,
     room_plate: {
       room_id: '',
       floor_plate_id: '', //编号

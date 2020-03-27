@@ -26,15 +26,12 @@
 					</van-row>
 
 					<van-row style="margin-top:10px;">
-						<van-field label="用地位置:" input-align="right" placeholder="请输入用地位置" />
-						<van-field label="宗地号:" input-align="right" placeholder="请输入宗地号" />
-						<van-field label="建筑性质:" input-align="right" placeholder="请输入建筑性质" />
-						<van-field label="立项时间:" input-align="right" placeholder="请输入立项时间" />
-					</van-row>
-					<van-row style="margin-top:10px;">
-						<van-field label="栋数:" input-align="right" placeholder="请输入栋数" />
+						<van-field label="幢号:" input-align="right" placeholder="请输入用地位置" />
+						<van-field label="结构:" input-align="right" placeholder="请输入宗地号" />
+						<van-field label="房屋总层数:" input-align="right" placeholder="请输入建筑性质" />
+						<van-field label="所在层数:" input-align="right" placeholder="请输入立项时间" />
 						<van-field label="建筑面积:" input-align="right" placeholder="请输入建筑面积" />
-						<van-field label="建筑功能:" input-align="right" placeholder="请输入建筑功能" />
+						<van-field label="设计用途:" input-align="right" placeholder="请输入建筑功能" />
 					</van-row>
 					<div style="width: 100%;height:60px;"></div>
 					<div v-show="this.$store.state.user.role == 'worker'" class="estate-footer">
@@ -74,7 +71,7 @@
 
 <script>
 	//import estateSummary from '@/components/estate/estate-summary.vue';
-	import { NavBar, Field, Button, Row, Col, Cell, Tabs, Tab, Icon, Switch, CellGroup } from 'vant';
+	import { NavBar, Field, Button, Row, Col, Cell, Tabs, Tab, Icon, Switch } from 'vant';
 	import 'vant/lib/nav-bar/style';
 	import 'vant/lib/tabs/style';
 	import 'vant/lib/tab/style';

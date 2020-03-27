@@ -94,7 +94,7 @@ CREATE TABLE Building
 	building_plate_id    VARCHAR(36) NULL,
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
-	is_private           CHAR(18) NULL DEFAULT 0,
+	is_private           CHAR(1) NULL DEFAULT 1,
 	x_84                 DOUBLE NULL,
 	y_84                 DOUBLE NULL,
 	x_54                 DOUBLE NULL,
@@ -151,7 +151,7 @@ CREATE TABLE estate
 	audit_status         VARCHAR(1) NULL DEFAULT '0',
 	worker_id            VARCHAR(32) NULL,
 	type                 VARCHAR(20) NULL,
-	is_private           CHAR(18) NULL DEFAULT 0
+	is_private           CHAR(1) NULL DEFAULT 1
 );
 
 
@@ -215,7 +215,7 @@ CREATE TABLE floor
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
 	display_index        INTEGER NULL,
-	is_private           CHAR(18) NULL DEFAULT 0
+	is_private           CHAR(1) NULL DEFAULT 1
 );
 
 
@@ -262,7 +262,7 @@ CREATE TABLE room
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
 	display_index        INTEGER NULL,
-	is_private           CHAR(18) NULL DEFAULT 0
+	is_private           CHAR(1) NULL DEFAULT 1
 );
 
 
@@ -367,7 +367,7 @@ CREATE TABLE unit
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
 	display_index        INTEGER NULL,
-	is_private           CHAR(18) NULL DEFAULT 0
+	is_private           CHAR(1) NULL DEFAULT 1
 );
 
 
