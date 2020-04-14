@@ -104,7 +104,6 @@ const UpdateBuildingToDb = that => {
       $toast.loading('正在保存...', 0);
 
       //调用 restful接口函数`
-      window.console.log(that.objBuilding);
 
       const params = Object.assign({}, params, {
         building: that.objBuilding
