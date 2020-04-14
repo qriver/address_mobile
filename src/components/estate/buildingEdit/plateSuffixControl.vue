@@ -48,12 +48,13 @@ export default {
       this.value = this.columns[i].text;
       this.keyId = this.columns[i].keyId;
       this.$store.commit('building/setPlateSuffix', this.columns[i]);
-
       this.showPicker = false;
+      this.$emit('suffix-picker-confirm', this.columns[i]);
     },
     onCancel() {
       const r = { keyId: '', value: '' };
       this.$store.commit('building/setPlateSuffix', r);
+      this.$emit('suffix-picker-confirm', r);
       this.showPicker = false;
     },
     onFieldClick() {

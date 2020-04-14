@@ -34,7 +34,19 @@ const building = {
   createBuilding(params) {
     return axios.post(`${base.url1}/building/create`, params);
   },
-
+  updateBuilding(params) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${base.url1}/building/update`, params)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+    // return axios.post(`${base.url1}/estate/update`, params);
+  },
   getUnitChildrens(params) {
     return new Promise((resolve, reject) => {
       axios
