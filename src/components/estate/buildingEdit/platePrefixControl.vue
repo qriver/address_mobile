@@ -49,6 +49,7 @@ export default {
       this.value = this.columns[i].text;
       this.keyId = this.columns[i].keyId;
       this.$store.commit('building/setPlatePrefix', this.columns[i]);
+      this.$emit('prefix-picker-confirm', this.columns[i]);
 
       this.showPicker = false;
     },
@@ -57,6 +58,7 @@ export default {
       this.keyId = '';
       const r = { keyId: '', value: '' };
       this.$store.commit('building/setPlatePrefix', r);
+      this.$emit('prefix-picker-confirm', r);
 
       this.showPicker = false;
     },

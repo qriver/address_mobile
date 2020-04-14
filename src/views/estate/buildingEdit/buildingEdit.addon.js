@@ -1,5 +1,6 @@
 import uuid from 'node-uuid';
 import { unitObject, floorObject, roomObject } from '@/api/type/building.type.js';
+import { $dialog, $toast } from '@/assets/common/common.js';
 
 function createBuildingStruct(buildingInstance) {
   buildingInstance.buildingId = uuid.v4();
@@ -92,8 +93,47 @@ function createRooms(floorInstance) {
     room.roomAlias = room.roomPlate.plateAlias;
     floorInstance.rooms.push(room);
   }
-
   return;
 }
 
-export { createBuildingStruct };
+const UpdateBuildingToDb = that => {
+  $dialog('提示', '您确定要保存数据吗？')
+    .then(() => {
+      // var building = that.objbuilding;
+      // building.buildingPlate.plateDesc = computePlateDesc(building);
+      $toast.loading('正在保存...', 0);
+
+      //调用 restful接口函数`
+
+      const params = Object.assign({}, params, {
+        building: that.objBuilding
+      });
+      // window.console.log(params);
+      that.$api.building.updateBuilding(params).then(
+        res => {
+          // window.console.log(res);
+          if (res.data.statusCode !== '-1') {
+            $toast.close();
+            $toast.success('保存成功！', 1500);
+            // that.$store.commit('building/setbuilding', that.objbuilding);
+            sessionStorage.setItem('building', JSON.stringify(that.objBuilding));
+            // that.$router.push('/building/portal');
+            return true;
+          } else {
+            $toast.close();
+            $toast.alert('保存失败\n' + JSON.stringify(res.data.result), 5000);
+            return;
+          }
+        },
+        err => {
+          //$toast('保存失败！', 3000);
+          return err;
+        }
+      );
+    })
+    .catch(() => {
+      $toast('没有保存！', 1000);
+    });
+};
+
+export { createBuildingStruct, UpdateBuildingToDb };

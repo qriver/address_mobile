@@ -16,6 +16,10 @@ function buildingObject() {
     workerId: '',
     units: [],
     isPrivate: 0,
+    x84: '0',
+    y84: '0',
+    x54: '0',
+    y54: '0',
     buildingPlate: {
       buildingId: '',
       buildingPlateId: '', //门牌编号

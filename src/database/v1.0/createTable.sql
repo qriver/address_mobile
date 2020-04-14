@@ -73,10 +73,10 @@ CREATE TABLE Building
 	worker_id            VARCHAR(20) NULL,
 	create_date          DATETIME NULL DEFAULT current_timestamp(),
 	is_private           CHAR(1) NULL DEFAULT 1,
-	x_84                 DOUBLE NULL,
-	y_84                 DOUBLE NULL,
-	x_54                 DOUBLE NULL,
-	y_54                 DOUBLE NULL
+	x84                  DOUBLE NULL  DEFAULT 0,
+	y84                  DOUBLE NULL  DEFAULT 0,
+	x54                  DOUBLE NULL  DEFAULT 0,
+	y54                  DOUBLE NULL  DEFAULT 0,
 );
 
 
