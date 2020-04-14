@@ -52,7 +52,7 @@ export default {
       this.$emit('suffix-picker-confirm', this.columns[i]);
     },
     onCancel() {
-      const r = { keyId: '', value: '' };
+      const r = { keyId: '', text: '' };
       this.$store.commit('building/setPlateSuffix', r);
       this.$emit('suffix-picker-confirm', r);
       this.showPicker = false;
